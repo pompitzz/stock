@@ -287,3 +287,4 @@ dist
 /python/
 /record/
 /.idea/
+/docker/stock_db/
