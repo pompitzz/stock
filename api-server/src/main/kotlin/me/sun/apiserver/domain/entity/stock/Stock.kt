@@ -1,5 +1,6 @@
-package me.sun.apiserver.domain.entity
+package me.sun.apiserver.domain.entity.stock
 
+import me.sun.apiserver.domain.entity.StockPrice
 import javax.persistence.*
 
 @Entity
