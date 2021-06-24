@@ -9,7 +9,7 @@ class HistoricalStockPrice(
     @Id
     @Column(name = "historical_stock_price_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null,
+    val id: Long = 0,
     @Column(nullable = false)
     val stockId: Long,
     @Column(nullable = false)

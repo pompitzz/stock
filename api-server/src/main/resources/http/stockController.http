@@ -1,0 +1,2 @@
+###
+GET http://localhost:8080/stock/context/CPNG?period=10

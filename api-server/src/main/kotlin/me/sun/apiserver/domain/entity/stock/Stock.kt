@@ -8,7 +8,7 @@ class Stock(
         @Id
         @Column(name = "stock_id")
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        var id: Long? = null,
+        val id: Long = 0,
         @JoinColumn(name = "stock_price_id")
         @OneToOne
         val stockPrice: StockPrice,
