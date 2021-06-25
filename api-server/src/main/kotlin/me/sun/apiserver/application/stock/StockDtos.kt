@@ -17,9 +17,10 @@ class StockSummary(
     val price: BigDecimal,
     val priceDate: LocalDate,
     val currency: Currency,
+    val interest: Boolean,
 ) {
     companion object {
-        fun fromEntity(stock: Stock) = with(stock) {
+        fun from(stock: Stock, interest: Boolean = false) = with(stock) {
             StockSummary(
                 stockId = id,
                 symbol = symbol,
@@ -27,6 +28,7 @@ class StockSummary(
                 price = stockPrice.price,
                 priceDate = stockPrice.date,
                 currency = stockPrice.currency,
+                interest = interest,
             )
         }
     }

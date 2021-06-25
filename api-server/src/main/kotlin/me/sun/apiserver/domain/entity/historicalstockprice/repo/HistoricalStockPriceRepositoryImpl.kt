@@ -1,4 +1,4 @@
-package me.sun.apiserver.domain.entity.historicalstockprice.repository
+package me.sun.apiserver.domain.entity.historicalstockprice.repo
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import me.sun.apiserver.domain.entity.historicalstockprice.HistoricalStockPrice

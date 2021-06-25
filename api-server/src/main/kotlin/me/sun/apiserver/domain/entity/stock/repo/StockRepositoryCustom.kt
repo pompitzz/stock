@@ -1,4 +1,4 @@
-package me.sun.apiserver.domain.entity.stock.repository
+package me.sun.apiserver.domain.entity.stock.repo
 
 import me.sun.apiserver.domain.entity.stock.Stock
 import org.springframework.data.domain.Page

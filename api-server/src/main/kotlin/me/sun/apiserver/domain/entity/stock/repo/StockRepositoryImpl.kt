@@ -1,4 +1,4 @@
-package me.sun.apiserver.domain.entity.stock.repository
+package me.sun.apiserver.domain.entity.stock.repo
 
 import com.querydsl.jpa.impl.JPAQueryFactory
 import me.sun.apiserver.domain.entity.stock.QStock.stock

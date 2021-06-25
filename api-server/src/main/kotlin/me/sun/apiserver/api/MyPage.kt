@@ -1,7 +1,6 @@
 package me.sun.apiserver.api
 
 import org.springframework.data.domain.Page
-import java.util.function.Function
 import kotlin.streams.toList
 
 class MyPage<T>(
@@ -13,9 +12,14 @@ class MyPage<T>(
     val sort: List<String>
 ) {
     companion object {
-        fun <T> from(page: Page<T>) = with(page) {
-            MyPage<T>(
-                content = content,
+        fun <T> from(page: Page<T>) = from(page) { it }
+
+        fun <T, R> from(
+            page: Page<T>,
+            mapper: (content: List<T>) -> List<R>
+        ): MyPage<R> = with(page) {
+            MyPage(
+                content = mapper(content),
                 lastPage = isLast,
                 size = size,
                 currentPage = number,
