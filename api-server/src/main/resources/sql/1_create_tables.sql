@@ -1,30 +1,20 @@
-create table stock_price
-(
-    stock_price_id bigint         not null auto_increment,
-    currency       varchar(255)   not null,
-    date           date           not null,
-    price          decimal(19, 2) not null,
-    time_zone      varchar(255)   not null,
-    primary key (stock_price_id)
-);
-
-
-
 create table stock
 (
-    stock_id       bigint       not null auto_increment,
-    exchange       varchar(255) not null,
-    industry       varchar(255),
-    logo_url       varchar(255),
-    market         varchar(255) not null,
-    name           varchar(255) not null,
-    sector         varchar(255),
-    state          varchar(255),
-    symbol         varchar(255) not null unique,
-    website        varchar(255),
-    stock_price_id bigint,
-    primary key (stock_id),
-    foreign key (stock_price_id) references stock_price (stock_price_id)
+    stock_id   bigint         not null auto_increment,
+    exchange   varchar(255)   not null,
+    industry   varchar(255),
+    logo_url   varchar(255),
+    market     varchar(255)   not null,
+    name       varchar(255)   not null,
+    sector     varchar(255),
+    state      varchar(255),
+    symbol     varchar(255)   not null unique,
+    website    varchar(255),
+    currency   varchar(255)   not null,
+    time_zone  varchar(255)   not null,
+    price_date date           not null,
+    price      decimal(19, 2) not null,
+    primary key (stock_id)
 );
 
 
