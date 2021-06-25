@@ -1,4 +1,4 @@
-package me.sun.apiserver.application
+package me.sun.apiserver.application.stock
 
 import me.sun.apiserver.domain.entity.Currency
 import me.sun.apiserver.domain.entity.stock.Stock
@@ -21,7 +21,7 @@ class StockSummary(
     companion object {
         fun fromEntity(stock: Stock) = with(stock) {
             StockSummary(
-                stockId = id!!,
+                stockId = id,
                 symbol = symbol,
                 name = name,
                 price = stockPrice.price,

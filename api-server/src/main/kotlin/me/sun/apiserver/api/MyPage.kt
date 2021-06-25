@@ -1,6 +1,7 @@
 package me.sun.apiserver.api
 
 import org.springframework.data.domain.Page
+import java.util.function.Function
 import kotlin.streams.toList
 
 class MyPage<T>(

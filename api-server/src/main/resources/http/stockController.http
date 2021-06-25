@@ -1,2 +1,5 @@
 ###
 GET http://localhost:8080/stock/context/CPNG?period=10
+
+###
+GET http://localhost:8080/stock/search?query=ms
