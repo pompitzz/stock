@@ -288,3 +288,4 @@ dist
 /record/
 /.idea/
 /docker/stock_db/
+*todo.*
