@@ -1,6 +1,5 @@
 package me.sun.apiserver.application.user
 
-import me.sun.apiserver.application.stock.StockService
 import me.sun.apiserver.domain.entity.userintereststock.UserInterestStock
 import me.sun.apiserver.domain.entity.userintereststock.repo.UserInterestStockRepository
 import org.springframework.stereotype.Service
@@ -8,8 +7,7 @@ import org.springframework.transaction.annotation.Transactional
 
 @Service
 class UserInterestStockService(
-    private val userInterestStockRepository: UserInterestStockRepository,
-    private val stockService: StockService
+    private val userInterestStockRepository: UserInterestStockRepository
 ) {
     fun add(userId: Long, stockId: Long) {
         userInterestStockRepository.save(UserInterestStock(userId = userId, stockId = stockId))

@@ -32,3 +32,11 @@ create table historical_stock_price
     foreign key (stock_id) references stock (stock_id)
 );
 
+create table user_interest_stock
+(
+    user_interest_stock_id bigint not null auto_increment,
+    deleted                bit    not null,
+    stock_id               bigint not null,
+    user_id                bigint not null,
+    primary key (user_interest_stock_id)
+)
