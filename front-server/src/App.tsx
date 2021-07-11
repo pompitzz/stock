@@ -10,7 +10,7 @@ export enum ThemeType {
   LIGHT = 'light'
 }
 
-const findTheme = () => localStorage.getItem(THEME_KEY) === ThemeType.DARK ? ThemeType.DARK : ThemeType.LIGHT;
+const findTheme = () => localStorage.getItem(THEME_KEY) === ThemeType.LIGHT ? ThemeType.LIGHT : ThemeType.DARK;
 const saveTheme = (themeType: ThemeType) => localStorage.setItem(THEME_KEY, themeType);
 
 function App() {

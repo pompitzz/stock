@@ -1,5 +1,5 @@
 import { createApiAction } from './utils/actionUtils';
-import { takeLatest } from 'redux-saga/effects'
+import { debounce } from 'redux-saga/effects'
 import createAsyncSaga from './utils/sagaUtils';
 import stockApi from '../lib/api/stockApi';
 import { Page } from '../types/pages';
@@ -13,7 +13,7 @@ const SEARCH_REQUEST = 'stock/search';
 export const stockSearchAction = createApiAction(SEARCH_REQUEST)<SearchRequest, Page<StockSummary>, AxiosResponse>();
 
 export function* stockSaga() {
-  yield takeLatest(SEARCH_REQUEST, createAsyncSaga(stockSearchAction, stockApi.search));
+  yield debounce(300, SEARCH_REQUEST, createAsyncSaga(stockSearchAction, stockApi.search));
 }
 
 export type StockState = {

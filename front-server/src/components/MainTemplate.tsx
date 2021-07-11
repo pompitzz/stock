@@ -12,6 +12,7 @@ import { Box, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText } from
 import { RouteContext } from '../routes/routes';
 import { Brightness4, Brightness7 } from '@material-ui/icons';
 import { ThemeType } from '../App';
+import routeUtils from '../routes/routeUtils';
 
 const drawerWidth = 240;
 
@@ -88,7 +89,7 @@ interface MainTemplateProps extends RouteComponentProps {
 
 function MainTemplate({ routes, location, changeTheme, themeType }: MainTemplateProps) {
   const currentRouteContext = useMemo(
-    () => routes.find(({ path }) => path === location.pathname),
+    () => routes.find(route => routeUtils.isMatch(route, location.pathname)),
     [routes, location]
   );
   const classes = useStyles();
@@ -156,9 +157,9 @@ function MainTemplate({ routes, location, changeTheme, themeType }: MainTemplate
         </div>
         <Divider />
         <List>
-          {routes.map((context: RouteContext) => (
+          {routes.filter((context: RouteContext) => context.showInMenu).map((context: RouteContext) => (
             <ListItem button key={context.path} component={Link} to={context.path}>
-              <ListItemIcon>{context.iconComponent}</ListItemIcon>
+              <ListItemIcon>{context.menuIconComponent}</ListItemIcon>
               <ListItemText primary={context.name} />
             </ListItem>
           ))}

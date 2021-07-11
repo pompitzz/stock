@@ -38,7 +38,7 @@ export const apiState = {
 
 export function createApiReducer<S, AC extends AnyAsyncActionCreator, K extends keyof S>(
   asyncActionCreator: AC,
-  key: K
+  key: K,
 ) {
   const REQUEST = getType(asyncActionCreator.request)
   const SUCCESS = getType(asyncActionCreator.success)

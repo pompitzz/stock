@@ -1,4 +1,4 @@
-import PageInfo from './pages';
+import { PageRequest } from './pages';
 
 export enum Currency {
   USD = 'USD',
@@ -7,5 +7,5 @@ export enum Currency {
 
 export type SearchRequest = {
   query: string,
-  pageInfo: PageInfo,
+  pageRequest: PageRequest,
 }

@@ -1,6 +1,6 @@
 export class Page<T> {
-  constructor(private readonly content: T[],
-              private readonly pageInfo: PageInfo) {
+  constructor(public readonly content: T[],
+              public readonly pageInfo: PageInfo) {
   }
 
   public static empty<T>(): Page<T> {
@@ -29,6 +29,12 @@ export interface PageRequest {
   sort: string[],
 }
 
+export const FIRST_PAGE_REQUEST: PageRequest = {
+  page: 0,
+  size: 20,
+  sort: [],
+}
+
 export default class PageInfo {
   constructor(public readonly lastPage: boolean,
               public readonly size: number,
@@ -41,16 +47,11 @@ export default class PageInfo {
     return new PageInfo(false, size, 0, 0, sort)
   }
 
-  public toPageRequest(): PageRequest {
+  public toPageRequest(page: number = this.currentPage + 1): PageRequest {
     return {
-      page: this.getCurrentPageForServer() + 1,
+      page: page - 1, // server-side pages start with 0.
       size: this.size,
       sort: this.sort,
     }
-  }
-
-  // Api Server treats the first page as 0, but Front Server as 1.
-  private getCurrentPageForServer() {
-    return this.currentPage - 1;
   }
 }
