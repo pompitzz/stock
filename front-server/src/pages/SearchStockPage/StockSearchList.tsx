@@ -1,6 +1,6 @@
 import React from 'react';
 import { Page } from '../../types/pages';
-import { StockSummary } from '../../types/stock';
+import { StockContext } from '../../types/stock';
 import { Box, CircularProgress } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import StockCard from '../../components/StockCard';
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 );
 
 interface StockSearchListProps {
-  stockPage: Page<StockSummary>;
+  stockPage: Page<StockContext>;
   loading: boolean;
   error: Error | null;
 }
@@ -42,16 +42,16 @@ function StockSearchList({ stockPage, loading, error }: StockSearchListProps) {
     return <div className={classes.loading}><CircularProgress /></div>;
   }
   if (error) {
-    return <div className={classes.empty}>something is wrong :(</div>;
+    return <div className={classes.empty}>something is wrong :( {error}</div>;
   }
   if (stockPage.content.length === 0) {
     return <div className={classes.empty}>no results.</div>
   }
   return (
     <div className={classes.root}>
-      {stockPage.content.map(stock => (
-        <Box pb={2}>
-          <StockCard stock={stock} key={stock.stockId} />
+      {stockPage.content.map(({ stockDetail }) => (
+        <Box pb={2} key={stockDetail.stockId}>
+          <StockCard stockDetail={stockDetail} />
         </Box>
       ))}
     </div>

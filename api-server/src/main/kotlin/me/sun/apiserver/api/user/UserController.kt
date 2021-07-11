@@ -1,7 +1,7 @@
 package me.sun.apiserver.api.user
 
+import me.sun.apiserver.application.stock.StockContext
 import me.sun.apiserver.application.stock.StockService
-import me.sun.apiserver.application.stock.StockSummary
 import me.sun.apiserver.application.user.UserInterestStockService
 import org.springframework.web.bind.annotation.*
 
@@ -24,7 +24,7 @@ class UserController(
     @GetMapping("/interestStock")
     fun findUserInterestStocks(@RequestParam userId: Long): FindUserInterestStockResponse {
         val stockIds: List<Long> = userInterestStockService.findInterestStockIds(userId)
-        val stockSummaries: List<StockSummary> = stockService.findStockSummaries(stockIds)
-        return FindUserInterestStockResponse(stockSummaries)
+        val stockContexts: List<StockContext> = stockService.findStockContexts(stockIds)
+        return FindUserInterestStockResponse(stockContexts)
     }
 }

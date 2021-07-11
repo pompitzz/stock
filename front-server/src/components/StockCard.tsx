@@ -2,7 +2,7 @@ import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import { StockSummary } from '../types/stock';
+import { StockDetail } from '../types/stock';
 import { CardActionArea } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
@@ -39,11 +39,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface StockCardProps {
-  stock: StockSummary,
+  stockDetail: StockDetail,
 }
 
-function StockCard({ stock }: StockCardProps) {
-  const { name, symbol, price, currency, priceDate, stockId } = stock;
+function StockCard({ stockDetail }: StockCardProps) {
+  const { name, symbol, price, currency, priceDate, stockId } = stockDetail;
   const classes = useStyles();
   return (
     <Card className={classes.root}>

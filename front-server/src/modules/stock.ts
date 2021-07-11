@@ -6,18 +6,18 @@ import { Page } from '../types/pages';
 import { AxiosResponse } from 'axios';
 import { apiState, ApiState, createApiReducer } from './utils/reducerUtils';
 import { SearchRequest } from '../types/common';
-import { StockSummary } from '../types/stock';
+import { StockContext } from '../types/stock';
 import { createReducer } from 'typesafe-actions';
 
 const SEARCH_REQUEST = 'stock/search';
-export const stockSearchAction = createApiAction(SEARCH_REQUEST)<SearchRequest, Page<StockSummary>, AxiosResponse>();
+export const stockSearchAction = createApiAction(SEARCH_REQUEST)<SearchRequest, Page<StockContext>, AxiosResponse>();
 
 export function* stockSaga() {
   yield debounce(300, SEARCH_REQUEST, createAsyncSaga(stockSearchAction, stockApi.search));
 }
 
 export type StockState = {
-  stockSummaryPageApiState: ApiState<Page<StockSummary>>;
+  stockSummaryPageApiState: ApiState<Page<StockContext>>;
 }
 
 const initialState: StockState = {

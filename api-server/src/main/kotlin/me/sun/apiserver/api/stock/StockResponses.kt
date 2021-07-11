@@ -2,13 +2,12 @@ package me.sun.apiserver.api.stock
 
 import me.sun.apiserver.api.MyPage
 import me.sun.apiserver.application.stock.StockContext
-import me.sun.apiserver.application.stock.StockSummary
 
 
-class SingleStockContextResponse(
+class StockContextResponse(
     val stockContext: StockContext
 )
 
 class StockSearchResponse(
-    val stockSummaries: MyPage<StockSummary>
+    val stockContexts: MyPage<StockContext>
 )

@@ -1,6 +1,11 @@
 import { Currency } from './common';
 
-export type StockSummary = {
+export type StockContext = {
+  stockDetail: StockDetail;
+  interest: boolean;
+};
+
+export type StockDetail = {
   stockId: number;
   symbol: string;
   name: string;

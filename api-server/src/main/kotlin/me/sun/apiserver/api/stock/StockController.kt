@@ -1,5 +1,6 @@
 package me.sun.apiserver.api.stock
 
+import me.sun.apiserver.application.stock.StockSearchPeriodType
 import me.sun.apiserver.application.stock.StockService
 import org.springframework.data.domain.Pageable
 import org.springframework.web.bind.annotation.*
@@ -16,9 +17,9 @@ class StockController(
     }
 
     @GetMapping("/context/{symbol}")
-    fun findStockContext(@PathVariable symbol: String, @RequestParam period: Int): SingleStockContextResponse {
-        if (period < 7) throw IllegalArgumentException("period should be greater than or equal 7 but is $period")
-        val stockContext = stockService.findStockContext(symbol, period.toLong())
-        return SingleStockContextResponse(stockContext)
+    fun findStockContext(@PathVariable symbol: String,
+                         @RequestParam period: StockSearchPeriodType): StockContextResponse {
+        val stockContext = stockService.findStockContext(symbol, period)
+        return StockContextResponse(stockContext)
     }
 }
