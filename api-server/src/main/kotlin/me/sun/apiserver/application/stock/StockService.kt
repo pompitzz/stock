@@ -45,8 +45,9 @@ class StockService(
             .findHistoricalStockPriceByPeriodType(stock, periodType)
             .map { SimpleHistoricalPrice(it.close, it.date) }
         return StockContext(
-            stockDetail = StockDetail.from(stock, historicalStockPrices),
-            interest = interestStockIds.contains(stock.id)
+            stockDetail = StockDetail.from(stock),
+            interest = interestStockIds.contains(stock.id),
+            historicalPrices = historicalStockPrices,
         )
     }
 }

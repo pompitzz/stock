@@ -1,7 +1,7 @@
 import getAxios from './axiosProvider';
 import { Page, ServerPageResponse } from '../../types/pages';
 import { StockContext } from '../../types/stock';
-import { SearchRequest } from '../../types/common';
+import { FindStockContextRequest, SearchRequest } from '../../types/common';
 import { AxiosResponse } from 'axios';
 import apiResponseConverter from '../utils/apiResponseConverter';
 
@@ -15,11 +15,20 @@ const stockApi = {
     };
     return axios.get('/stock/search', { params: params })
       .then(({ data }: AxiosResponse<StockSearchResponse>) => apiResponseConverter.convertPage(data.stockContexts));
+  },
+  findStockContextBySymbol({ symbol, periodType }: FindStockContextRequest): Promise<StockContext> {
+    const params = { period: periodType.name };
+    return axios.get(`/stock/context/${symbol}`, { params: params })
+      .then(({ data }: AxiosResponse<StockContextResponse>) => data.stockContext);
   }
 }
 
 type StockSearchResponse = {
   stockContexts: ServerPageResponse<StockContext>,
+}
+
+type StockContextResponse = {
+  stockContext: StockContext,
 }
 
 export default stockApi;

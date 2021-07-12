@@ -9,6 +9,7 @@ import java.time.LocalDate
 class StockContext(
     val stockDetail: StockDetail,
     val interest: Boolean = false,
+    val historicalPrices: List<SimpleHistoricalPrice> = emptyList()
 )
 
 class StockDetail(
@@ -18,10 +19,9 @@ class StockDetail(
     val price: BigDecimal,
     val priceDate: LocalDate,
     val currency: Currency,
-    val historicalPrices: List<SimpleHistoricalPrice>
 ) {
     companion object {
-        fun from(stock: Stock, historicalPrices: List<SimpleHistoricalPrice> = emptyList()) = with(stock) {
+        fun from(stock: Stock) = with(stock) {
             StockDetail(
                 stockId = id,
                 symbol = symbol,
@@ -29,7 +29,6 @@ class StockDetail(
                 price = stockPrice.price,
                 priceDate = stockPrice.date,
                 currency = stockPrice.currency,
-                historicalPrices = historicalPrices
             )
         }
     }

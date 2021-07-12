@@ -43,14 +43,14 @@ interface StockCardProps {
 }
 
 function StockCard({ stockDetail }: StockCardProps) {
-  const { name, symbol, price, currency, priceDate, stockId } = stockDetail;
+  const { name, symbol, price, currency, priceDate } = stockDetail;
   const classes = useStyles();
   return (
     <Card className={classes.root}>
       <CardActionArea
         className={classes.wrapper}
         component={Link}
-        to={`/stock-detail/${stockId}`}
+        to={`/stock-detail/${symbol}`}
       >
         <div className={classes.details}>
           <Typography component="h6" variant="h6">

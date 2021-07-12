@@ -1,10 +1,10 @@
 import React from 'react';
-import useStockSearch from '../../hooks/useStockSearch';
+import useSearchStock from '../../hooks/useSearchStock';
 import StockSearchBox from './StockSearchBox';
 import StockSearchList from './StockSearchList';
 
 function StockSearchPage() {
-  const { searchStock, loading, stockPage, error } = useStockSearch();
+  const { searchStock, loading, stockPage, error } = useSearchStock();
   return (
     <div>
       <StockSearchBox searchStock={searchStock} />

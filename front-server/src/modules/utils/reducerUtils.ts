@@ -44,10 +44,13 @@ export function createApiReducer<S, AC extends AnyAsyncActionCreator, K extends 
   const SUCCESS = getType(asyncActionCreator.success)
   const FAILURE = getType(asyncActionCreator.failure)
   return {
-    [REQUEST]: (state: S) => ({
-      ...state,
-      [key]: apiState.request()
-    }),
+    [REQUEST]: (state: S, action: any) => {
+      console.log('request', action);
+      return ({
+        ...state,
+        [key]: apiState.request()
+      });
+    },
     [SUCCESS]: (state: S, action: AnyAction) => {
       // console.log('success action', action);
       return ({

@@ -1,4 +1,5 @@
 import { PageRequest } from './pages';
+import { PeriodType } from './stock';
 
 export enum Currency {
   USD = 'USD',
@@ -8,4 +9,9 @@ export enum Currency {
 export type SearchRequest = {
   query: string,
   pageRequest: PageRequest,
+}
+
+export type FindStockContextRequest = {
+  symbol: string,
+  periodType: PeriodType,
 }

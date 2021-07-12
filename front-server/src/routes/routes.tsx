@@ -20,7 +20,7 @@ export const routes: RouteContext[] = [
   },
   {
     name: 'Stock Detail',
-    path: '/stock-detail/:stockId',
+    path: '/stock-detail/:symbol',
     pageComponent: <StockDetailPage />,
     showInMenu: false,
   }
