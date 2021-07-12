@@ -45,7 +45,6 @@ export function createApiReducer<S, AC extends AnyAsyncActionCreator, K extends 
   const FAILURE = getType(asyncActionCreator.failure)
   return {
     [REQUEST]: (state: S, action: any) => {
-      console.log('request', action);
       return ({
         ...state,
         [key]: apiState.request()

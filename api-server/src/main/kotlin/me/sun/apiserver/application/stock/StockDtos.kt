@@ -1,6 +1,7 @@
 package me.sun.apiserver.application.stock
 
-import me.sun.apiserver.application.stock.StockSearchSelectionCycle.*
+import me.sun.apiserver.application.stock.StockSearchSelectionCycle.DAY
+import me.sun.apiserver.application.stock.StockSearchSelectionCycle.WEEK
 import me.sun.apiserver.domain.entity.Currency
 import me.sun.apiserver.domain.entity.stock.Stock
 import java.math.BigDecimal
@@ -49,10 +50,10 @@ enum class StockSearchPeriodType(
     M_1("1 month", DAY),
     M_3("3 months", DAY),
     M_6("6 months", DAY),
-    Y_1("1 year", WEEK),
-    Y_3("3 years", MONTH),
-    Y_5("5 years", MONTH),
-    Y_10("10 years", MONTH);
+    Y_1("1 year", DAY),
+    Y_3("3 years", DAY),
+    Y_5("5 years", WEEK),
+    Y_10("10 years", WEEK);
 
 
     fun getStartDate(): LocalDate = when (this) {

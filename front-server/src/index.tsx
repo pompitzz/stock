@@ -9,6 +9,9 @@ import { applyMiddleware, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer, { rootSaga } from './modules';
+import { Chart, registerables } from 'chart.js';
+
+Chart.register(...registerables);
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
