@@ -11,16 +11,16 @@ internal class HistoricalStockPriceSelectorTest {
     private val selector: HistoricalStockPriceSelector = HistoricalStockPriceSelector()
 
     @Test
-    fun `selectBySelectionCycle return same price with param prices when prices size is 1`() {
+    fun `selectBySelectionTimeUnit return same price with param prices when prices size is 1`() {
         // given
         val prices = listOf(
             createPrice(LocalDate.of(2021, 1, 1))
         )
 
         // when
-        val resultForDay = selector.selectBySelectionCycle(prices, StockSearchSelectionCycle.DAY)
-        val resultForWeek = selector.selectBySelectionCycle(prices, StockSearchSelectionCycle.WEEK)
-        val resultForMonth = selector.selectBySelectionCycle(prices, StockSearchSelectionCycle.MONTH)
+        val resultForDay = selector.selectBySelectionTimeUnit(prices, StockSearchSelectionTimeUnit.DAY)
+        val resultForWeek = selector.selectBySelectionTimeUnit(prices, StockSearchSelectionTimeUnit.WEEK)
+        val resultForMonth = selector.selectBySelectionTimeUnit(prices, StockSearchSelectionTimeUnit.MONTH)
 
         // then
         assertThat(resultForDay.size).isEqualTo(1)
@@ -33,7 +33,7 @@ internal class HistoricalStockPriceSelectorTest {
     }
 
     @Test
-    fun `selectBySelectionCycle when SelectionType is WEEK`() {
+    fun `selectBySelectionTimeUnit when SelectionType is WEEK`() {
         // given
         val prices = listOf(
             createPrice(LocalDate.of(2021, 7, 12)), // peek
@@ -48,7 +48,7 @@ internal class HistoricalStockPriceSelectorTest {
         )
 
         // when
-        val resultForWeek = selector.selectBySelectionCycle(prices, StockSearchSelectionCycle.WEEK)
+        val resultForWeek = selector.selectBySelectionTimeUnit(prices, StockSearchSelectionTimeUnit.WEEK)
 
         // then
         assertThat(resultForWeek.size).isEqualTo(4)
@@ -59,7 +59,7 @@ internal class HistoricalStockPriceSelectorTest {
     }
 
     @Test
-    fun `selectBySelectionCycle when SelectionType is MONTH`() {
+    fun `selectBySelectionTimeUnit when SelectionType is MONTH`() {
         // given
         val prices = listOf(
             createPrice(LocalDate.of(2021, 7, 12)), // peek
@@ -77,7 +77,7 @@ internal class HistoricalStockPriceSelectorTest {
         )
 
         // when
-        val resultForWeek = selector.selectBySelectionCycle(prices, StockSearchSelectionCycle.MONTH)
+        val resultForWeek = selector.selectBySelectionTimeUnit(prices, StockSearchSelectionTimeUnit.MONTH)
 
         // then
         assertThat(resultForWeek.size).isEqualTo(4)

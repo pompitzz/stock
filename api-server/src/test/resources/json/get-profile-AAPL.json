@@ -1,0 +1,766 @@
+{
+  "financialsTemplate": {
+    "code": "N",
+    "maxAge": 1
+  },
+  "price": {
+    "quoteSourceName": "Nasdaq Real Time Price",
+    "regularMarketOpen": {
+      "raw": 148.1,
+      "fmt": "148.10"
+    },
+    "averageDailyVolume3Month": {
+      "raw": 83640587,
+      "fmt": "83.64M",
+      "longFmt": "83,640,587"
+    },
+    "exchange": "NMS",
+    "regularMarketTime": 1626292803,
+    "volume24Hr": {},
+    "regularMarketDayHigh": {
+      "raw": 149.57,
+      "fmt": "149.57"
+    },
+    "shortName": "Apple Inc.",
+    "averageDailyVolume10Day": {
+      "raw": 103207871,
+      "fmt": "103.21M",
+      "longFmt": "103,207,871"
+    },
+    "longName": "Apple Inc.",
+    "regularMarketChange": {
+      "raw": 3.5099945,
+      "fmt": "3.51"
+    },
+    "currencySymbol": "$",
+    "regularMarketPreviousClose": {
+      "raw": 145.64,
+      "fmt": "145.64"
+    },
+    "postMarketTime": 1626307198,
+    "preMarketPrice": {
+      "raw": 149.4,
+      "fmt": "149.40"
+    },
+    "preMarketTime": 1626354417,
+    "exchangeDataDelayedBy": 0,
+    "toCurrency": null,
+    "postMarketChange": {
+      "raw": 0.3400116,
+      "fmt": "0.34"
+    },
+    "postMarketPrice": {
+      "raw": 149.49,
+      "fmt": "149.49"
+    },
+    "exchangeName": "NasdaqGS",
+    "preMarketChange": {
+      "raw": 0.25,
+      "fmt": "0.25"
+    },
+    "circulatingSupply": {},
+    "regularMarketDayLow": {
+      "raw": 147.68,
+      "fmt": "147.68"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "currency": "USD",
+    "regularMarketPrice": {
+      "raw": 149.15,
+      "fmt": "149.15"
+    },
+    "regularMarketVolume": {
+      "raw": 127050785,
+      "fmt": "127.05M",
+      "longFmt": "127,050,785.00"
+    },
+    "lastMarket": null,
+    "regularMarketSource": "FREE_REALTIME",
+    "openInterest": {},
+    "marketState": "PRE",
+    "underlyingSymbol": null,
+    "marketCap": {
+      "raw": 2488955305984,
+      "fmt": "2.49T",
+      "longFmt": "2,488,955,305,984.00"
+    },
+    "quoteType": "EQUITY",
+    "preMarketChangePercent": {
+      "raw": 0.001676165,
+      "fmt": "0.17%"
+    },
+    "volumeAllCurrencies": {},
+    "postMarketSource": "DELAYED",
+    "strikePrice": {},
+    "symbol": "AAPL",
+    "postMarketChangePercent": {
+      "raw": 0.0022796623,
+      "fmt": "0.23%"
+    },
+    "preMarketSource": "FREE_REALTIME",
+    "maxAge": 1,
+    "fromCurrency": null,
+    "regularMarketChangePercent": {
+      "raw": 0.024100484,
+      "fmt": "2.41%"
+    }
+  },
+  "secFilings": {
+    "filings": [
+      {
+        "date": "2021-04-29",
+        "epochDate": 1619694802,
+        "type": "10-Q",
+        "title": "Quarterly Report",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-21-000056&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2021-04-28",
+        "epochDate": 1619645498,
+        "type": "8-K",
+        "title": "Results of Operations and Financial Condition, Financial Statements and Exhibits",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-21-000055&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2021-02-24",
+        "epochDate": 1614202478,
+        "type": "8-K",
+        "title": "Submission of Matters to a Vote of Security Holders",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0001193125-21-054710&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2021-02-08",
+        "epochDate": 1612819923,
+        "type": "8-K",
+        "title": "Other Events, Financial Statements and Exhibits",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0001193125-21-032394&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2021-01-28",
+        "epochDate": 1611831743,
+        "type": "10-Q",
+        "title": "Quarterly Report",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-21-000010&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2021-01-27",
+        "epochDate": 1611783081,
+        "type": "8-K",
+        "title": "Results of Operations and Financial Condition, Financial Statements and Exhibits",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-21-000009&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2021-01-05",
+        "epochDate": 1609882443,
+        "type": "8-K",
+        "title": "Change in Directors or Principal Officers",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0001193125-21-001982&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2020-10-30",
+        "epochDate": 1604055976,
+        "type": "10-K",
+        "title": "Annual Report",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-20-000096&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2020-10-29",
+        "epochDate": 1604007124,
+        "type": "8-K",
+        "title": "Results of Operations and Financial Condition, Financial Statements and Exhibits",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-20-000094&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2020-08-20",
+        "epochDate": 1597959111,
+        "type": "8-K",
+        "title": "Other Events, Financial Statements and Exhibits",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0001193125-20-225672&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2020-08-07",
+        "epochDate": 1596838860,
+        "type": "8-K",
+        "title": "Amendments to Articles of Inc. or Bylaws; Change in Fiscal Year, Financial Statements and Exhibits",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0001193125-20-213158&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2020-07-31",
+        "epochDate": 1596193466,
+        "type": "10-Q",
+        "title": "Quarterly Report",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-20-000062&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2020-07-30",
+        "epochDate": 1596153394,
+        "type": "8-K",
+        "title": "Results of Operations and Financial Condition, Financial Statements and Exhibits",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-20-000060&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2020-05-11",
+        "epochDate": 1589229159,
+        "type": "8-K",
+        "title": "Disclosing Other Events, Financial Statements and Exhibits",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0001193125-20-139112&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2020-05-01",
+        "epochDate": 1588329945,
+        "type": "10-Q",
+        "title": "Quarterly Report",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-20-000052&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2020-04-30",
+        "epochDate": 1588278795,
+        "type": "8-K",
+        "title": "Disclosing Results of Operations and Financial Condition, Financial Statements and Exhibits",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-20-000050&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2020-02-18",
+        "epochDate": 1582025728,
+        "type": "8-K",
+        "title": "Disclosing Regulation FD Disclosure, Financial Statements and Exhibits",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0001193125-20-039203&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2020-01-29",
+        "epochDate": 1580296028,
+        "type": "10-Q",
+        "title": "Quarterly Report",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-20-000010&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2020-01-28",
+        "epochDate": 1580247103,
+        "type": "8-K",
+        "title": "Disclosing Results of Operations and Financial Condition, Financial Statements and Exhibits",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-20-000008&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2019-11-15",
+        "epochDate": 1573817072,
+        "type": "8-K",
+        "title": "Disclosing Other Events, Financial Statements and Exhibits",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0001193125-19-292676&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2019-10-31",
+        "epochDate": 1572516447,
+        "type": "10-K",
+        "title": "Annual Report",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-19-000119&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2019-10-30",
+        "epochDate": 1572467523,
+        "type": "8-K",
+        "title": "Disclosing Results of Operations and Financial Condition, Financial Statements and Exhibits",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-19-000117&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2019-09-11",
+        "epochDate": 1568233320,
+        "type": "8-K",
+        "title": "Disclosing Other Events, Financial Statements and Exhibits",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0001193125-19-242975&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2019-07-31",
+        "epochDate": 1564605221,
+        "type": "10-Q",
+        "title": "Quarterly Report",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-19-000076&nav=1&src=Yahoo",
+        "maxAge": 1
+      },
+      {
+        "date": "2019-07-30",
+        "epochDate": 1564518682,
+        "type": "8-K",
+        "title": "Disclosing Results of Operations and Financial Condition, Financial Statements and Exhibits",
+        "edgarUrl": "https://yahoo.brand.edgar-online.com/DisplayFiling.aspx?TabIndex=2&dcn=0000320193-19-000073&nav=1&src=Yahoo",
+        "maxAge": 1
+      }
+    ],
+    "maxAge": 86400
+  },
+  "quoteType": {
+    "exchange": "NMS",
+    "shortName": "Apple Inc.",
+    "longName": "Apple Inc.",
+    "exchangeTimezoneName": "America/New_York",
+    "exchangeTimezoneShortName": "EDT",
+    "isEsgPopulated": false,
+    "gmtOffSetMilliseconds": "-14400000",
+    "quoteType": "EQUITY",
+    "symbol": "AAPL",
+    "messageBoardId": "finmb_24937",
+    "market": "us_market"
+  },
+  "calendarEvents": {
+    "maxAge": 1,
+    "earnings": {
+      "earningsDate": [
+        {
+          "raw": 1627430400,
+          "fmt": "2021-07-28"
+        },
+        {
+          "raw": 1627862400,
+          "fmt": "2021-08-02"
+        }
+      ],
+      "earningsAverage": {
+        "raw": 1,
+        "fmt": "1.00"
+      },
+      "earningsLow": {
+        "raw": 0.82,
+        "fmt": "0.82"
+      },
+      "earningsHigh": {
+        "raw": 1.16,
+        "fmt": "1.16"
+      },
+      "revenueAverage": {
+        "raw": 72927700000,
+        "fmt": "72.93B",
+        "longFmt": "72,927,700,000"
+      },
+      "revenueLow": {
+        "raw": 65682000000,
+        "fmt": "65.68B",
+        "longFmt": "65,682,000,000"
+      },
+      "revenueHigh": {
+        "raw": 77150000000,
+        "fmt": "77.15B",
+        "longFmt": "77,150,000,000"
+      }
+    },
+    "exDividendDate": {
+      "raw": 1620345600,
+      "fmt": "2021-05-07"
+    },
+    "dividendDate": {
+      "raw": 1620864000,
+      "fmt": "2021-05-13"
+    }
+  },
+  "summaryDetail": {
+    "previousClose": {
+      "raw": 145.64,
+      "fmt": "145.64"
+    },
+    "regularMarketOpen": {
+      "raw": 148.1,
+      "fmt": "148.10"
+    },
+    "twoHundredDayAverage": {
+      "raw": 130.0884,
+      "fmt": "130.09"
+    },
+    "trailingAnnualDividendYield": {
+      "raw": 0.0056303213,
+      "fmt": "0.56%"
+    },
+    "payoutRatio": {
+      "raw": 0.1834,
+      "fmt": "18.34%"
+    },
+    "volume24Hr": {},
+    "regularMarketDayHigh": {
+      "raw": 149.57,
+      "fmt": "149.57"
+    },
+    "navPrice": {},
+    "averageDailyVolume10Day": {
+      "raw": 103207871,
+      "fmt": "103.21M",
+      "longFmt": "103,207,871"
+    },
+    "totalAssets": {},
+    "regularMarketPreviousClose": {
+      "raw": 145.64,
+      "fmt": "145.64"
+    },
+    "fiftyDayAverage": {
+      "raw": 133.1556,
+      "fmt": "133.16"
+    },
+    "trailingAnnualDividendRate": {
+      "raw": 0.82,
+      "fmt": "0.82"
+    },
+    "open": {
+      "raw": 148.1,
+      "fmt": "148.10"
+    },
+    "toCurrency": null,
+    "averageVolume10days": {
+      "raw": 103207871,
+      "fmt": "103.21M",
+      "longFmt": "103,207,871"
+    },
+    "expireDate": {},
+    "yield": {},
+    "algorithm": null,
+    "dividendRate": {
+      "raw": 0.88,
+      "fmt": "0.88"
+    },
+    "exDividendDate": {
+      "raw": 1620345600,
+      "fmt": "2021-05-07"
+    },
+    "beta": {
+      "raw": 1.20729,
+      "fmt": "1.21"
+    },
+    "circulatingSupply": {},
+    "startDate": {},
+    "regularMarketDayLow": {
+      "raw": 147.68,
+      "fmt": "147.68"
+    },
+    "priceHint": {
+      "raw": 2,
+      "fmt": "2",
+      "longFmt": "2"
+    },
+    "currency": "USD",
+    "trailingPE": {
+      "raw": 33.524387,
+      "fmt": "33.52"
+    },
+    "regularMarketVolume": {
+      "raw": 127050785,
+      "fmt": "127.05M",
+      "longFmt": "127,050,785"
+    },
+    "lastMarket": null,
+    "maxSupply": {},
+    "openInterest": {},
+    "marketCap": {
+      "raw": 2488955305984,
+      "fmt": "2.49T",
+      "longFmt": "2,488,955,305,984"
+    },
+    "volumeAllCurrencies": {},
+    "strikePrice": {},
+    "averageVolume": {
+      "raw": 83640587,
+      "fmt": "83.64M",
+      "longFmt": "83,640,587"
+    },
+    "priceToSalesTrailing12Months": {
+      "raw": 7.648769,
+      "fmt": "7.65"
+    },
+    "dayLow": {
+      "raw": 147.68,
+      "fmt": "147.68"
+    },
+    "ask": {
+      "raw": 149.23,
+      "fmt": "149.23"
+    },
+    "ytdReturn": {},
+    "askSize": {
+      "raw": 1400,
+      "fmt": "1.4k",
+      "longFmt": "1,400"
+    },
+    "volume": {
+      "raw": 127050785,
+      "fmt": "127.05M",
+      "longFmt": "127,050,785"
+    },
+    "fiftyTwoWeekHigh": {
+      "raw": 149.57,
+      "fmt": "149.57"
+    },
+    "forwardPE": {
+      "raw": 27.93071,
+      "fmt": "27.93"
+    },
+    "maxAge": 1,
+    "fromCurrency": null,
+    "fiveYearAvgDividendYield": {
+      "raw": 1.32,
+      "fmt": "1.32"
+    },
+    "fiftyTwoWeekLow": {
+      "raw": 89.145,
+      "fmt": "89.14"
+    },
+    "bid": {
+      "raw": 149.21,
+      "fmt": "149.21"
+    },
+    "tradeable": false,
+    "dividendYield": {
+      "raw": 0.0058999998,
+      "fmt": "0.59%"
+    },
+    "bidSize": {
+      "raw": 800,
+      "fmt": "800",
+      "longFmt": "800"
+    },
+    "dayHigh": {
+      "raw": 149.57,
+      "fmt": "149.57"
+    }
+  },
+  "symbol": "AAPL",
+  "assetProfile": {
+    "zip": "95014",
+    "sector": "Technology",
+    "fullTimeEmployees": 100000,
+    "compensationRisk": 2,
+    "auditRisk": 3,
+    "longBusinessSummary": "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. It also sells various related services. The company offers iPhone, a line of smartphones; Mac, a line of personal computers; iPad, a line of multi-purpose tablets; and wearables, home, and accessories comprising AirPods, Apple TV, Apple Watch, Beats products, HomePod, iPod touch, and other Apple-branded and third-party accessories. It also provides AppleCare support services; cloud services store services; and operates various platforms, including the App Store, that allow customers to discover and download applications and digital content, such as books, music, video, games, and podcasts. In addition, the company offers various services, such as Apple Arcade, a game subscription service; Apple Music, which offers users a curated listening experience with on-demand radio stations; Apple News+, a subscription news and magazine service; Apple TV+, which offers exclusive original content; Apple Card, a co-branded credit card; and Apple Pay, a cashless payment service, as well as licenses its intellectual property. The company serves consumers, and small and mid-sized businesses; and the education, enterprise, and government markets. It sells and delivers third-party applications for its products through the App Store. The company also sells its products through its retail and online stores, and direct sales force; and third-party cellular network carriers, wholesalers, retailers, and resellers. Apple Inc. was founded in 1977 and is headquartered in Cupertino, California.",
+    "city": "Cupertino",
+    "phone": "408-996-1010",
+    "state": "CA",
+    "shareHolderRightsRisk": 1,
+    "compensationAsOfEpochDate": 1609372800,
+    "governanceEpochDate": 1625097600,
+    "boardRisk": 1,
+    "country": "United States",
+    "companyOfficers": [
+      {
+        "totalPay": {
+          "raw": 14769259,
+          "fmt": "14.77M",
+          "longFmt": "14,769,259"
+        },
+        "exercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "yearBorn": 1961,
+        "name": "Mr. Timothy D. Cook",
+        "title": "CEO & Director",
+        "maxAge": 1,
+        "fiscalYear": 2020,
+        "unexercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "age": 59
+      },
+      {
+        "totalPay": {
+          "raw": 4595583,
+          "fmt": "4.6M",
+          "longFmt": "4,595,583"
+        },
+        "exercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "yearBorn": 1964,
+        "name": "Mr. Luca  Maestri",
+        "title": "CFO & Sr. VP",
+        "maxAge": 1,
+        "fiscalYear": 2020,
+        "unexercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "age": 56
+      },
+      {
+        "totalPay": {
+          "raw": 4594137,
+          "fmt": "4.59M",
+          "longFmt": "4,594,137"
+        },
+        "exercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "yearBorn": 1964,
+        "name": "Mr. Jeffrey E. Williams",
+        "title": "Chief Operating Officer",
+        "maxAge": 1,
+        "fiscalYear": 2020,
+        "unexercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "age": 56
+      },
+      {
+        "totalPay": {
+          "raw": 4591310,
+          "fmt": "4.59M",
+          "longFmt": "4,591,310"
+        },
+        "exercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "yearBorn": 1964,
+        "name": "Ms. Katherine L. Adams",
+        "title": "Sr. VP, Gen. Counsel & Sec.",
+        "maxAge": 1,
+        "fiscalYear": 2020,
+        "unexercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "age": 56
+      },
+      {
+        "totalPay": {
+          "raw": 4614684,
+          "fmt": "4.61M",
+          "longFmt": "4,614,684"
+        },
+        "exercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "yearBorn": 1967,
+        "name": "Ms. Deirdre  O'Brien",
+        "title": "Sr. VP of People & Retail",
+        "maxAge": 1,
+        "fiscalYear": 2020,
+        "unexercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "age": 53
+      },
+      {
+        "maxAge": 1,
+        "name": "Mr. Chris  Kondo",
+        "title": "Sr. Director of Corp. Accounting",
+        "exercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "unexercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        }
+      },
+      {
+        "maxAge": 1,
+        "name": "Mr. James  Wilson",
+        "title": "Chief Technology Officer",
+        "exercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "unexercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        }
+      },
+      {
+        "maxAge": 1,
+        "name": "Ms. Mary  Demby",
+        "title": "Chief Information Officer",
+        "exercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "unexercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        }
+      },
+      {
+        "maxAge": 1,
+        "name": "Ms. Nancy  Paxton",
+        "title": "Sr. Director of Investor Relations & Treasury",
+        "exercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "unexercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        }
+      },
+      {
+        "maxAge": 1,
+        "name": "Mr. Greg  Joswiak",
+        "title": "Sr. VP of Worldwide Marketing",
+        "exercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        },
+        "unexercisedValue": {
+          "raw": 0,
+          "fmt": null,
+          "longFmt": "0"
+        }
+      }
+    ],
+    "website": "http://www.apple.com",
+    "maxAge": 86400,
+    "overallRisk": 1,
+    "address1": "One Apple Park Way",
+    "industry": "Consumer Electronics"
+  },
+  "pageViews": {
+    "shortTermTrend": "UP",
+    "midTermTrend": "UP",
+    "longTermTrend": "UP",
+    "maxAge": 1
+  }
+}

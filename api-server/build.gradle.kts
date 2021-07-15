@@ -38,6 +38,8 @@ dependencies {
     implementation("com.querydsl:querydsl-jpa:${queryDslVersion}")
     kapt("com.querydsl:querydsl-apt:${queryDslVersion}:jpa")
 
+    kapt("org.springframework.boot:spring-boot-configuration-processor")
+
     runtimeOnly("com.h2database:h2")
     runtimeOnly("org.mariadb.jdbc:mariadb-java-client")
 

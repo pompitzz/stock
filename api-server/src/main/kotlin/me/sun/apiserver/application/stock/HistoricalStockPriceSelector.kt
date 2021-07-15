@@ -7,13 +7,13 @@ import java.time.temporal.WeekFields
 
 @Component
 class HistoricalStockPriceSelector {
-    fun selectBySelectionCycle(
+    fun selectBySelectionTimeUnit(
         historicalStockPrices: List<HistoricalStockPrice>,
-        selectionCycle: StockSearchSelectionCycle,
-    ): List<HistoricalStockPrice> = when (selectionCycle) {
-        StockSearchSelectionCycle.DAY -> historicalStockPrices.sortedBy { it.date }
-        StockSearchSelectionCycle.WEEK -> historicalStockPrices.selectByWeek().sortedBy { it.date }
-        StockSearchSelectionCycle.MONTH -> historicalStockPrices.selectByMonth().sortedBy { it.date }
+        selectionTimeUnit: StockSearchSelectionTimeUnit,
+    ): List<HistoricalStockPrice> = when (selectionTimeUnit) {
+        StockSearchSelectionTimeUnit.DAY -> historicalStockPrices.sortedBy { it.date }
+        StockSearchSelectionTimeUnit.WEEK -> historicalStockPrices.selectByWeek().sortedBy { it.date }
+        StockSearchSelectionTimeUnit.MONTH -> historicalStockPrices.selectByMonth().sortedBy { it.date }
     }
 
     private fun List<HistoricalStockPrice>.selectByWeek(): List<HistoricalStockPrice> {

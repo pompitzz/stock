@@ -289,3 +289,4 @@ dist
 /.idea/
 /docker/stock_db/
 *todo.*
+/api-server/src/main/resources/tokens.yml

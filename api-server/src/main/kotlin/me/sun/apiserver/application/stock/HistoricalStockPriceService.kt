@@ -18,7 +18,7 @@ class HistoricalStockPriceService(
     fun findHistoricalStockPriceByPeriodType(stock: Stock, periodType: StockSearchPeriodType): List<HistoricalStockPrice> {
         return try {
             val historicalStockPrices = historicalRepository.findAllAfterOrEqualToTargetDate(stock.id, periodType.getStartDate())
-            historicalStockPriceSelector.selectBySelectionCycle(historicalStockPrices, periodType.selectionCycle)
+            historicalStockPriceSelector.selectBySelectionTimeUnit(historicalStockPrices, periodType.selectionTimeUnit)
         } catch (e: Exception) {
             log.error("fail find historical stock prices. symbol: {}", stock.symbol, e)
             emptyList()

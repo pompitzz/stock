@@ -1,7 +1,7 @@
 package me.sun.apiserver.application.stock
 
-import me.sun.apiserver.application.stock.StockSearchSelectionCycle.DAY
-import me.sun.apiserver.application.stock.StockSearchSelectionCycle.WEEK
+import me.sun.apiserver.application.stock.StockSearchSelectionTimeUnit.DAY
+import me.sun.apiserver.application.stock.StockSearchSelectionTimeUnit.WEEK
 import me.sun.apiserver.domain.entity.Currency
 import me.sun.apiserver.domain.entity.stock.Stock
 import java.math.BigDecimal
@@ -42,7 +42,7 @@ class SimpleHistoricalPrice(
 
 enum class StockSearchPeriodType(
     val desc: String,
-    val selectionCycle: StockSearchSelectionCycle,
+    val selectionTimeUnit: StockSearchSelectionTimeUnit,
 ) {
     W_1("1 week", DAY),
     W_2("2 weeks", DAY),
@@ -76,6 +76,6 @@ fun main() {
     }
 }
 
-enum class StockSearchSelectionCycle {
+enum class StockSearchSelectionTimeUnit {
     DAY, WEEK, MONTH
 }
