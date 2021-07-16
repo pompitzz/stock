@@ -37,6 +37,26 @@ internal class HistoricalStockPriceRepositoryTest {
         assertThat(historicalStockPrices[1].date).isEqualTo(LocalDate.of(2021, 6, 3))
     }
 
+    @Test
+    fun `findLatestSavedPrice returns latest saved price`() {
+        // given
+        val stockId = 1L
+        historicalStockPriceRepository.saveAll(
+            listOf(
+                createHistory(LocalDate.of(2021, 6, 1), stockId),
+                createHistory(LocalDate.of(2021, 7, 3), stockId),
+                createHistory(LocalDate.of(2021, 5, 2), stockId),
+            )
+        )
+
+
+        // when
+        val historicalStockPrice = historicalStockPriceRepository.findLatestPrice(stockId)
+
+        // then
+        assertThat(historicalStockPrice.date).isEqualTo(LocalDate.of(2021, 7, 3))
+    }
+
     fun createHistory(date: LocalDate, stockId: Long) = HistoricalStockPrice(
         stockId = stockId,
         date = date,

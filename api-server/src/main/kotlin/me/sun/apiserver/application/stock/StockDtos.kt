@@ -51,7 +51,7 @@ enum class StockSearchPeriodType(
     M_3("3 months", DAY),
     M_6("6 months", DAY),
     Y_1("1 year", DAY),
-    Y_3("3 years", DAY),
+    Y_3("3 years", WEEK),
     Y_5("5 years", WEEK),
     Y_10("10 years", WEEK);
 

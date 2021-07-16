@@ -6,7 +6,7 @@ import me.sun.apiserver.domain.entity.historicalstockprice.QHistoricalStockPrice
 import java.time.LocalDate
 
 class HistoricalStockPriceRepositoryImpl(
-    private val queryFactory: JPAQueryFactory
+    private val queryFactory: JPAQueryFactory,
 ) : HistoricalStockPriceRepositoryCustom {
     override fun findAllAfterOrEqualToTargetDate(stockId: Long, targetDate: LocalDate): List<HistoricalStockPrice> =
         queryFactory
@@ -19,4 +19,13 @@ class HistoricalStockPriceRepositoryImpl(
                     )
             )
             .fetch()
+
+    override fun findLatestPrice(stockId: Long): HistoricalStockPrice =
+        queryFactory
+            .selectFrom(historicalStockPrice)
+            .where(historicalStockPrice.stockId.eq(stockId))
+            .orderBy(historicalStockPrice.date.desc())
+            .limit(1)
+            .fetchOne()
+            ?: throw IllegalArgumentException("cannot find historical price. stockId: $stockId")
 }

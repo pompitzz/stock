@@ -1,5 +1,6 @@
-package me.sun.apiserver.application.stock
+package me.sun.apiserver.application.historical
 
+import me.sun.apiserver.application.stock.StockSearchPeriodType
 import me.sun.apiserver.common.logger
 import me.sun.apiserver.domain.entity.historicalstockprice.HistoricalStockPrice
 import me.sun.apiserver.domain.entity.historicalstockprice.repo.HistoricalStockPriceRepository

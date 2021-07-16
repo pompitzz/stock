@@ -2,7 +2,7 @@ package me.sun.apiserver.infrastructure.yahoofinace.stockprice
 
 import me.sun.apiserver.ApiFailureException
 import me.sun.apiserver.domain.entity.StockPrice
-import me.sun.apiserver.domain.service.StockPriceProvider
+import me.sun.apiserver.domain.service.provider.StockPriceProvider
 import me.sun.apiserver.infrastructure.yahoofinace.YahooFinanceProfile
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component

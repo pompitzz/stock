@@ -2,6 +2,7 @@ package me.sun.apiserver.infrastructure.yahoofinace.stockprice
 
 import me.sun.apiserver.domain.entity.Currency
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -11,6 +12,7 @@ internal class YahooFinanceStockPriceProviderTest {
     @Autowired
     lateinit var yahooFinanceStockPriceProvider: YahooFinanceStockPriceProvider
 
+    @Disabled
     @Test
     fun `getStockPrice for AAPL`() {
         // when
@@ -18,5 +20,6 @@ internal class YahooFinanceStockPriceProviderTest {
 
         // then
         assertThat(stockPrice.currency).isEqualTo(Currency.USD)
+        println("${stockPrice.date}")
     }
 }

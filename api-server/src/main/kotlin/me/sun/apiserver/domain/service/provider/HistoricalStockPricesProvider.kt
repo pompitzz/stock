@@ -1,4 +1,4 @@
-package me.sun.apiserver.domain.service
+package me.sun.apiserver.domain.service.provider
 
 import me.sun.apiserver.domain.entity.historicalstockprice.HistoricalStockPrice
 

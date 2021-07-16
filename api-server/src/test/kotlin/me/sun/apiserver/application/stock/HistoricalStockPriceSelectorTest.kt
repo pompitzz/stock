@@ -1,5 +1,6 @@
 package me.sun.apiserver.application.stock
 
+import me.sun.apiserver.application.historical.HistoricalStockPriceSelector
 import me.sun.apiserver.domain.entity.historicalstockprice.HistoricalStockPrice
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

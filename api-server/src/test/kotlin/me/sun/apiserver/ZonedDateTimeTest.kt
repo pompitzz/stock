@@ -20,8 +20,18 @@ internal class ZonedDateTimeTest {
         printZonedDateTime(ZonedDateTime.ofInstant(Instant.ofEpochSecond(1624343406), ZoneId.of("Asia/Seoul")))
     }
 
+    @Test
+    fun timeTest() {
+        println(ZonedDateTime.now().withZoneSameInstant(ZoneId.of("America/New_York")))
+        println(ZonedDateTime.now().plusHours(5).withZoneSameInstant(ZoneId.of("America/New_York")))
+    }
+
     private fun printZonedDateTime(newYorkMarketTime: ZonedDateTime) {
         println(newYorkMarketTime)
         println(newYorkMarketTime.toLocalDate())
+        println(newYorkMarketTime.toLocalTime())
+        println(newYorkMarketTime.withZoneSameInstant(ZoneId.systemDefault()))
+        println(newYorkMarketTime.withZoneSameInstant(ZoneId.systemDefault()).toLocalDate())
+        println(newYorkMarketTime.withZoneSameInstant(ZoneId.systemDefault()).toLocalTime())
     }
 }

@@ -1,7 +1,14 @@
 package me.sun.apiserver.domain.entity.stock
 
+import me.sun.apiserver.domain.entity.Currency
 import me.sun.apiserver.domain.entity.StockPrice
+import java.time.LocalTime
+import java.time.ZoneId
+import java.time.ZonedDateTime
 import javax.persistence.*
+
+private val NEW_YORK_CLOSE_TIME = LocalTime.of(16, 0)
+private val SEOUL_CLOSE_TIME = LocalTime.of(15, 30)
 
 @Entity
 class Stock(
@@ -10,7 +17,7 @@ class Stock(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
     @Embedded
-    val stockPrice: StockPrice,
+    var stockPrice: StockPrice,
     @Column(nullable = false, unique = true)
     val symbol: String,
     @Column(nullable = false)
@@ -26,4 +33,16 @@ class Stock(
     val industry: String?,
     val website: String?,
     val logoUrl: String?,
-)
+) {
+    fun updateStockPrice(stockPrice: StockPrice) {
+        this.stockPrice = stockPrice
+    }
+
+    fun isMargetOpening(zonedDateTime: ZonedDateTime): Boolean {
+        val time = zonedDateTime.withZoneSameInstant(ZoneId.of(timeZone)).toLocalTime().minusMinutes(1)
+        if (stockPrice.currency == Currency.USD) {
+            return time.isBefore(NEW_YORK_CLOSE_TIME)
+        }
+        return time.isBefore(SEOUL_CLOSE_TIME)
+    }
+}

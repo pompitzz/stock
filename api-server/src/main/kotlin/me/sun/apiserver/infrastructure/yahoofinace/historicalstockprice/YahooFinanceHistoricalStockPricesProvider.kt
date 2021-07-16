@@ -2,7 +2,7 @@ package me.sun.apiserver.infrastructure.yahoofinace.stockprice
 
 import me.sun.apiserver.ApiFailureException
 import me.sun.apiserver.domain.entity.historicalstockprice.HistoricalStockPrice
-import me.sun.apiserver.domain.service.HistoricalStockPricesProvider
+import me.sun.apiserver.domain.service.provider.HistoricalStockPricesProvider
 import org.springframework.stereotype.Component
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.client.getForEntity

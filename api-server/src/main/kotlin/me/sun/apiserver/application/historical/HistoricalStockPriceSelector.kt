@@ -1,5 +1,6 @@
-package me.sun.apiserver.application.stock
+package me.sun.apiserver.application.historical
 
+import me.sun.apiserver.application.stock.StockSearchSelectionTimeUnit
 import me.sun.apiserver.domain.entity.historicalstockprice.HistoricalStockPrice
 import org.springframework.stereotype.Component
 import java.time.LocalDate
