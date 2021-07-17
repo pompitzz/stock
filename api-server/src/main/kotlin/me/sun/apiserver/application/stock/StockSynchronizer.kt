@@ -1,11 +1,13 @@
 package me.sun.apiserver.application.stock
 
+import me.sun.apiserver.common.isWeekend
 import me.sun.apiserver.common.logger
 import me.sun.apiserver.domain.entity.historicalstockprice.HistoricalStockPrice
 import me.sun.apiserver.domain.entity.historicalstockprice.repo.HistoricalStockPriceRepository
 import me.sun.apiserver.domain.entity.stock.Stock
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDate
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
@@ -38,13 +40,12 @@ class StockSynchronizer(
     // TODO: improve algorithm
     private fun isSyncPassTarget(stock: Stock): Boolean {
         val now = ZonedDateTime.now().withZoneSameInstant(ZoneId.of(stock.timeZone))
-        if (stock.isMargetOpening(now)) {
-            return true
-        }
 
-        if (now.toLocalDate().isEqual(stock.stockPrice.date)) {
-            return true
-        }
+        if (now.dayOfWeek.isWeekend()) return true
+
+        if (stock.isMargetOpening(now)) return true
+
+        if (stock.lastSyncedAt.toLocalDate().isBefore(LocalDate.now())) return true
 
         // TODO: add flag to sync only target stock
         return false

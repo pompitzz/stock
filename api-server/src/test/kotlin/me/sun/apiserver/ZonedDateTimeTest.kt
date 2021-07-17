@@ -26,6 +26,12 @@ internal class ZonedDateTimeTest {
         println(ZonedDateTime.now().plusHours(5).withZoneSameInstant(ZoneId.of("America/New_York")))
     }
 
+    @Test
+    fun `dayOfWeek`() {
+        println(ZonedDateTime.now().minusHours(10).dayOfWeek)
+        println(ZonedDateTime.now().minusHours(10).withZoneSameInstant(ZoneId.of("America/New_York")).dayOfWeek)
+    }
+
     private fun printZonedDateTime(newYorkMarketTime: ZonedDateTime) {
         println(newYorkMarketTime)
         println(newYorkMarketTime.toLocalDate())

@@ -19,7 +19,7 @@ class StockUpdater(
         stockPrice: StockPrice,
         historicalStockPrices: List<HistoricalStockPrice>,
     ) {
-        stock.updateStockPrice(stockPrice)
+        stock.syncStockPrice(stockPrice)
         stockRepository.save(stock)
         historicalStockPriceRepository.saveAll(historicalStockPrices)
     }

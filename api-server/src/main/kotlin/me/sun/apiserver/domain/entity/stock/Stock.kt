@@ -2,6 +2,7 @@ package me.sun.apiserver.domain.entity.stock
 
 import me.sun.apiserver.domain.entity.Currency
 import me.sun.apiserver.domain.entity.StockPrice
+import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -33,9 +34,12 @@ class Stock(
     val industry: String?,
     val website: String?,
     val logoUrl: String?,
+    @Column(nullable = false)
+    var lastSyncedAt: LocalDateTime = LocalDateTime.now(),
 ) {
-    fun updateStockPrice(stockPrice: StockPrice) {
+    fun syncStockPrice(stockPrice: StockPrice) {
         this.stockPrice = stockPrice
+        this.lastSyncedAt = LocalDateTime.now()
     }
 
     fun isMargetOpening(zonedDateTime: ZonedDateTime): Boolean {
