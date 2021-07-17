@@ -28,7 +28,7 @@ interface SearchBoxProps {
   searchStock: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-function StockSearchBox({ searchStock }: SearchBoxProps) {
+function StockSearchInput({ searchStock }: SearchBoxProps) {
   const classes = useStyles();
   return (
     <Paper component="form" className={classes.root}>
@@ -45,4 +45,4 @@ function StockSearchBox({ searchStock }: SearchBoxProps) {
   )
 }
 
-export default StockSearchBox;
+export default StockSearchInput;

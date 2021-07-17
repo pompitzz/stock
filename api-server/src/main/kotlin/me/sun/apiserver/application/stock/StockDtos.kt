@@ -3,6 +3,7 @@ package me.sun.apiserver.application.stock
 import me.sun.apiserver.application.stock.StockSearchSelectionTimeUnit.DAY
 import me.sun.apiserver.application.stock.StockSearchSelectionTimeUnit.WEEK
 import me.sun.apiserver.domain.entity.Currency
+import me.sun.apiserver.domain.entity.historicalstockprice.HistoricalStockPrice
 import me.sun.apiserver.domain.entity.stock.Stock
 import java.math.BigDecimal
 import java.time.LocalDate
@@ -10,7 +11,7 @@ import java.time.LocalDate
 class StockContext(
     val stockDetail: StockDetail,
     val interest: Boolean = false,
-    val historicalPrices: List<SimpleHistoricalPrice> = emptyList()
+    val historicalPrices: List<HistoricalStockPriceDto> = emptyList(),
 )
 
 class StockDetail(
@@ -35,10 +36,25 @@ class StockDetail(
     }
 }
 
-class SimpleHistoricalPrice(
-    val price: BigDecimal,
-    val date: LocalDate
-)
+class HistoricalStockPriceDto(
+    val date: LocalDate,
+    val open: BigDecimal,
+    val high: BigDecimal,
+    val low: BigDecimal,
+    val close: BigDecimal,
+    val volume: BigDecimal,
+) {
+    companion object {
+        fun from(historicalPrice: HistoricalStockPrice) = HistoricalStockPriceDto(
+            date = historicalPrice.date,
+            open = historicalPrice.open,
+            high = historicalPrice.high,
+            low = historicalPrice.low,
+            close = historicalPrice.close,
+            volume = historicalPrice.volume,
+        )
+    }
+}
 
 enum class StockSearchPeriodType(
     val desc: String,

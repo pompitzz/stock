@@ -6,7 +6,7 @@ import { RootState } from '../modules';
 
 export default function useFindStockContext(symbol: string) {
   const dispatch = useDispatch();
-  const [periodType, setPeriodType] = useState(PeriodType.M_6);
+  const [periodType, setPeriodType] = useState(PeriodType.M_1);
   useEffect(() => {
     dispatch(findStockContextAction.request({ symbol, periodType: periodType }))
   }, [dispatch, periodType]);

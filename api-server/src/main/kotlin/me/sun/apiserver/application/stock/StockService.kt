@@ -42,7 +42,7 @@ class StockService(
     ): StockContext {
         val historicalStockPrices = historicalStockPriceService
             .findHistoricalStockPriceByPeriodType(stock, periodType)
-            .map { SimpleHistoricalPrice(it.close, it.date) }
+            .map { HistoricalStockPriceDto.from(it) }
         return StockContext(
             stockDetail = StockDetail.from(stock),
             interest = interestStockIds.contains(stock.id),

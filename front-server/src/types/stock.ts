@@ -17,8 +17,12 @@ export type StockDetail = {
 }
 
 export type HistoricalPrice = {
-  price: number;
   date: string;
+  open: number;
+  high: number;
+  low: number;
+  close: number;
+  volume: number;
 }
 
 export class PeriodType {

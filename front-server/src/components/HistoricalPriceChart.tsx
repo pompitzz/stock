@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { HistoricalPrice, PeriodType } from '../types/stock';
+import { HistoricalPrice } from '../types/stock';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Chart } from 'chart.js';
 import { useTheme } from '@material-ui/core';
@@ -7,14 +7,13 @@ import { useTheme } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => ({}));
 
-interface ChartExamplesProps {
+interface HistoricalPriceChartProps {
   historicalPrices: HistoricalPrice[];
-  currentPeriodType?: PeriodType;
+  detailChart: boolean;
 }
 
-function HistoricalPriceChart({ historicalPrices, currentPeriodType }: ChartExamplesProps) {
+function HistoricalPriceChart({ historicalPrices, detailChart }: HistoricalPriceChartProps) {
   const chart = useRef<HTMLCanvasElement>(null);
-  const detailChart = !!currentPeriodType;
   const theme = useTheme();
   useEffect(() => {
     if (!chart.current) {
@@ -27,10 +26,9 @@ function HistoricalPriceChart({ historicalPrices, currentPeriodType }: ChartExam
         data: {
           datasets: [
             {
-              label: currentPeriodType?.desc,
               backgroundColor: theme.palette.info.dark,
               borderColor: theme.palette.info.main,
-              data: historicalPrices.map(({ price, date }) => ({ x: date, y: price })),
+              data: historicalPrices.map(({ close, date }) => ({ x: date, y: close })),
             },
           ]
         },
@@ -39,7 +37,7 @@ function HistoricalPriceChart({ historicalPrices, currentPeriodType }: ChartExam
           // maintainAspectRatio: false,
           plugins: {
             legend: {
-              display: detailChart
+              display: false,
             },
           },
           elements: {
@@ -67,6 +65,10 @@ function HistoricalPriceChart({ historicalPrices, currentPeriodType }: ChartExam
   return (
     <canvas ref={chart} style={{ height: '100%' }} />
   );
+}
+
+HistoricalPriceChart.defaultProps = {
+  detailChart: false,
 }
 
 export default HistoricalPriceChart;

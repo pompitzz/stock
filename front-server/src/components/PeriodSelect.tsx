@@ -8,7 +8,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center',
     '& > *': {
       margin: theme.spacing(0.5)
-    }
+    },
+    padding: theme.spacing(1)
   },
 }));
 
