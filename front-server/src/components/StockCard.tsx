@@ -2,9 +2,10 @@ import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import { StockDetail } from '../types/stock';
+import { StockContext } from '../types/stock';
 import { CardActionArea } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import HistoricalPriceChart from './HistoricalPriceChart';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,11 +19,12 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       width: '100%',
       height: '100%',
-      alignItems: 'start'
+      alignItems: 'stretch',
     },
     details: {
       flex: 2,
       padding: theme.spacing(2),
+      overflow: 'hidden'
     },
     price: {
       flex: 1,
@@ -30,20 +32,19 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     chart: {
       flex: 1,
+      display: 'flex',
+      alignItems: 'center',
+      width: 180,
     },
-    chartImg: {
-      width: '100%',
-      height: '100%',
-    }
   }),
 );
 
 interface StockCardProps {
-  stockDetail: StockDetail,
+  stockContext: StockContext,
 }
 
-function StockCard({ stockDetail }: StockCardProps) {
-  const { name, symbol, price, currency, priceDate } = stockDetail;
+function StockCard({ stockContext }: StockCardProps) {
+  const { name, symbol, price, currency, priceDate } = stockContext.stockDetail;
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -53,7 +54,7 @@ function StockCard({ stockDetail }: StockCardProps) {
         to={`/stock-detail/${symbol}`}
       >
         <div className={classes.details}>
-          <Typography component="h6" variant="h6">
+          <Typography component="h6" variant="h6" noWrap>
             {name}
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
@@ -70,12 +71,7 @@ function StockCard({ stockDetail }: StockCardProps) {
           {/*// TODO add diff price*/}
         </div>
         <div className={classes.chart}>
-          {/*// TODO: apply chart*/}
-          <img
-            className={classes.chartImg}
-            src="https://cdn.pixabay.com/photo/2016/10/04/13/05/graphic-1714230_960_720.png"
-            alt="preview"
-          />
+          <HistoricalPriceChart historicalPrices={stockContext.historicalPrices} />
         </div>
       </CardActionArea>
     </Card>

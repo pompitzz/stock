@@ -49,9 +49,9 @@ function StockSearchList({ stockPage, loading, error }: StockSearchListProps) {
   }
   return (
     <div className={classes.root}>
-      {stockPage.content.map(({ stockDetail }) => (
-        <Box pb={2} key={stockDetail.stockId}>
-          <StockCard stockDetail={stockDetail} />
+      {stockPage.content.map((stockContext) => (
+        <Box pb={2} key={stockContext.stockDetail.stockId}>
+          <StockCard stockContext={stockContext} />
         </Box>
       ))}
     </div>
