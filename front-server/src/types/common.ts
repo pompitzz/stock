@@ -15,3 +15,7 @@ export type FindStockContextRequest = {
   symbol: string,
   periodType: PeriodType,
 }
+
+export type Payload<T> = {
+  payload: T;
+}

@@ -13,6 +13,7 @@ import { RouteContext } from '../routes/routes';
 import { Brightness4, Brightness7 } from '@material-ui/icons';
 import { ThemeType } from '../App';
 import routeUtils from '../routes/routeUtils';
+import AuthenticationBtn from './AuthenticationBtn';
 
 const drawerWidth = 240;
 
@@ -125,16 +126,17 @@ function MainTemplate({ routes, location, changeTheme, themeType }: MainTemplate
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            TBD {currentRouteContext && `| ${currentRouteContext.name}`}
+            TBD {currentRouteContext?.name && `| ${currentRouteContext.name}`}
           </Typography>
           <Box ml="auto">
-            <IconButton
-              color={'inherit'}
-              onClick={changeTheme}
-            >
-              {themeType === ThemeType.DARK ? <Brightness4 /> : <Brightness7 />}
-            </IconButton>
+            <AuthenticationBtn lastViewedPagePath={location.pathname}/>
           </Box>
+          <IconButton
+            color={'inherit'}
+            onClick={changeTheme}
+          >
+            {themeType === ThemeType.DARK ? <Brightness4 /> : <Brightness7 />}
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
