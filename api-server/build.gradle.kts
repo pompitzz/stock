@@ -19,7 +19,7 @@ configurations {
     }
 }
 
-val queryDslVersion="4.4.0"
+val queryDslVersion = "4.4.0"
 
 repositories {
     mavenCentral()
@@ -28,6 +28,9 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
+
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
 
     implementation("org.joda:joda-money:1.0.1")
 
