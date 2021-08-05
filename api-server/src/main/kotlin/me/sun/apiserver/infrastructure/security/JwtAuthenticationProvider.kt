@@ -2,7 +2,9 @@ package me.sun.apiserver.infrastructure.security
 
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.core.Authentication
+import org.springframework.stereotype.Component
 
+@Component
 class JwtAuthenticationProvider(
     private val jwtTokenHelper: JwtTokenHelper,
 ) : AuthenticationProvider {

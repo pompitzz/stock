@@ -13,10 +13,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
-class SecurityConfiguration : WebSecurityConfigurerAdapter() {
+class SecurityConfiguration(
+    private val jwtAuthenticationProvider: JwtAuthenticationProvider
+) : WebSecurityConfigurerAdapter() {
 
     override fun configure(auth: AuthenticationManagerBuilder) {
-        auth.authenticationProvider(jwtAuthenticationProvider())
+        auth.authenticationProvider(jwtAuthenticationProvider)
     }
 
     override fun configure(web: WebSecurity) {
@@ -33,11 +35,6 @@ class SecurityConfiguration : WebSecurityConfigurerAdapter() {
             .permitAll()
 
         http.addFilterBefore(jwtAuthenticationFiler(), UsernamePasswordAuthenticationFilter::class.java)
-    }
-
-    @Bean
-    fun jwtAuthenticationProvider(): JwtAuthenticationProvider {
-        return JwtAuthenticationProvider()
     }
 
     @Bean

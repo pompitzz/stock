@@ -1,0 +1,6 @@
+###
+GET http://localhost:8080/login/kakao?code=yUs-ZZPKfXG8UPKd4zMc0126AUgcJvIY35Myt5KKAdEFAB5TbwnGx9Cnqn2BZ8DS3fnMbAo9dVoAAAF7FtyB-Q&redirectUrl=http://localhost:3000/login
+
+
+
+

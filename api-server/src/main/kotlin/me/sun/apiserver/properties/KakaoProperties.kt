@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
 
 @ConstructorBinding
-@ConfigurationProperties(prefix = "token")
-class TokenProperties(
-    val yahooFinanceKey: String,
+@ConfigurationProperties(prefix = "kakao")
+class KakaoProperties(
+    val clientId: String,
 )

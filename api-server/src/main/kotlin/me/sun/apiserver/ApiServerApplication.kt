@@ -8,8 +8,11 @@ import org.springframework.boot.runApplication
 @SpringBootApplication
 class ApiServerApplication {
 //    @Bean
-//    fun myRunner(tokenProperties: TokenProperties): ApplicationRunner = ApplicationRunner {
-//        print("tokenProperties: ${tokenProperties.yahooFinanceKey}")
+//    fun myRunner(jwtTokenHelper: JwtTokenHelper): ApplicationRunner = ApplicationRunner {
+//        val createToken = jwtTokenHelper.createToken("hello")
+//        println(createToken)
+//        val subject = jwtTokenHelper.validateAndGetSubject(createToken)
+//        println(subject)
 //    }
 }
 

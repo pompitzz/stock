@@ -3,3 +3,6 @@ GET http://localhost:8080/stock/context/CPNG?period=Y_1
 
 ###
 GET http://localhost:8080/stock/search?query=ms
+
+###
+GET http://localhost:8080/login
