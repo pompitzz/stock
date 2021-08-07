@@ -43,5 +43,8 @@ class User(
 }
 
 enum class UserRole {
-    USER, ADMIN
+    USER,
+    ADMIN;
+
+    fun getRoleName(): String = "ROLE_${this.name}"
 }

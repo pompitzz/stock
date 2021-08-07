@@ -49,16 +49,14 @@ CREATE TABLE user
     user_id                   bigint       NOT NULL AUTO_INCREMENT,
     access_token              varchar(255) NOT NULL,
     access_token_expiry_time  datetime     NOT NULL,
-    oauth_service_type        integer      NOT NULL,
+    oauth_service_type        varchar(255) NOT NULL,
     oauth_service_user_id     bigint       NOT NULL,
     refresh_token             varchar(255) NOT NULL,
     refresh_token_expiry_time datetime     NOT NULL,
     user_name                 varchar(255) NOT NULL,
+    role                      varchar(255) NOT NULL,
     PRIMARY KEY (user_id)
 ) ENGINE = InnoDB;
 
 ALTER TABLE user
     ADD UNIQUE INDEX oauth (oauth_service_user_id, oauth_service_type);
-
-ALTER TABLE user
-    ADD (role varchar(255) DEFAULT 'USER')

@@ -2,21 +2,20 @@ package me.sun.apiserver.infrastructure.security
 
 import org.springframework.http.HttpHeaders
 import org.springframework.security.core.Authentication
-import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter
-import org.springframework.security.web.util.matcher.RequestMatcher
+import org.springframework.security.web.authentication.AuthenticationConverter
+import org.springframework.stereotype.Component
 import javax.servlet.http.HttpServletRequest
-import javax.servlet.http.HttpServletResponse
 
-class JwtAuthenticationFilter(requestMatcher: RequestMatcher) : AbstractAuthenticationProcessingFilter(requestMatcher) {
+@Component
+class JwtAuthenticationConverter : AuthenticationConverter {
 
     companion object {
         private const val BEARER = "Bearer "
     }
 
-    override fun attemptAuthentication(request: HttpServletRequest, response: HttpServletResponse): Authentication {
+    override fun convert(request: HttpServletRequest): Authentication {
         val token = resolveToken(request)
-        val jwtAuthenticationToken = JwtAuthenticationToken(token)
-        return authenticationManager.authenticate(jwtAuthenticationToken)
+        return JwtAuthenticationToken(token = token)
     }
 
     private fun resolveToken(request: HttpServletRequest): String {

@@ -25,7 +25,7 @@ class JwtTokenHelper(
             .compact()
     }
 
-    fun validateAndGetSubject(token: String): String {
+    fun validateAndGetUserId(token: String): String {
         val subject = Jwts.parser()
             .setSigningKey(jwtProperties.secretKey)
             .parseClaimsJws(token)
