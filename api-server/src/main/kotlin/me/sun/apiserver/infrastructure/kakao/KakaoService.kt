@@ -10,6 +10,7 @@ import me.sun.apiserver.infrastructure.HttpRequester
 import me.sun.apiserver.properties.KakaoProperties
 import org.springframework.http.HttpMethod
 import org.springframework.stereotype.Service
+import java.time.LocalDateTime
 
 @Service
 class KakaoService(
@@ -23,11 +24,12 @@ class KakaoService(
     override fun login(loginRequest: LoginRequest): OAuthLoginResult {
         val kakaoToken = issueToken(loginRequest)
         val profile = getProfile(kakaoToken.access_token)
+        val now = LocalDateTime.now()
         return OAuthLoginResult(
             accessToken = kakaoToken.access_token,
-            accessTokenExpirySeconds = kakaoToken.expires_in,
+            accessTokenExpiryTime = now.plusSeconds(kakaoToken.expires_in),
             refreshToken = kakaoToken.refresh_token,
-            refreshTokenExpirySeconds = kakaoToken.refresh_token_expires_in,
+            refreshTokenExpiryTime = now.plusSeconds(kakaoToken.refresh_token_expires_in),
             oAuthServiceUserId = profile.id,
             userName = profile.kakao_account.profile.nickname
         )
