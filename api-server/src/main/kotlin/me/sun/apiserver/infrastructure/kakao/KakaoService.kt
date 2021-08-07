@@ -3,7 +3,7 @@ package me.sun.apiserver.infrastructure.kakao
 import me.sun.apiserver.ApiFailureException
 import me.sun.apiserver.application.LoginRequest
 import me.sun.apiserver.domain.OAuthLoginResult
-import me.sun.apiserver.domain.OAuthService
+import me.sun.apiserver.domain.OauthService
 import me.sun.apiserver.infrastructure.HttpFormUrlencodedRequestInfo
 import me.sun.apiserver.infrastructure.HttpJsonRequestInfo
 import me.sun.apiserver.infrastructure.HttpRequester
@@ -15,7 +15,7 @@ import java.time.LocalDateTime
 @Service
 class KakaoService(
     private val kakaoProperties: KakaoProperties,
-) : OAuthService {
+) : OauthService {
     companion object {
         const val TOKEN_API_URL = "https://kauth.kakao.com/oauth/token"
         const val GET_PROFILE_API_URL = "https://kapi.kakao.com/v2/user/me"
@@ -30,7 +30,7 @@ class KakaoService(
             accessTokenExpiryTime = now.plusSeconds(kakaoToken.expires_in),
             refreshToken = kakaoToken.refresh_token,
             refreshTokenExpiryTime = now.plusSeconds(kakaoToken.refresh_token_expires_in),
-            oAuthServiceUserId = profile.id,
+            oauthServiceUserId = profile.id,
             userName = profile.kakao_account.profile.nickname
         )
     }

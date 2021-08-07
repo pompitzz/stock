@@ -1,5 +1,6 @@
 package me.sun.apiserver.domain.entity.user
 
+import me.sun.apiserver.domain.OAuthLoginResult
 import me.sun.apiserver.domain.OAuthServiceType
 import java.time.LocalDateTime
 import javax.persistence.*
@@ -12,23 +13,34 @@ class User(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,
     @Column(nullable = false)
-    val accessToken: String,
+    var accessToken: String,
     @Column(nullable = false)
-    val accessTokenExpiryTime: LocalDateTime,
+    var accessTokenExpiryTime: LocalDateTime,
     @Column(nullable = false)
-    val refreshToken: String,
+    var refreshToken: String,
     @Column(nullable = false)
-    val refreshTokenExpiryTime: LocalDateTime,
-    @Column(nullable = false)
-    val oauthServiceType: OAuthServiceType,
-    @Column(nullable = false)
-    val oauthServiceUserId: Long,
-    @Column(nullable = false)
-    val userName: String,
+    var refreshTokenExpiryTime: LocalDateTime,
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    val role: UserRole = UserRole.USER,
-)
+    var oauthServiceType: OAuthServiceType,
+    @Column(nullable = false)
+    var oauthServiceUserId: Long,
+    @Column(nullable = false)
+    var userName: String,
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    var role: UserRole = UserRole.USER,
+) {
+    fun update(loginResult: OAuthLoginResult) {
+        accessToken = loginResult.accessToken
+        accessTokenExpiryTime = loginResult.accessTokenExpiryTime
+        refreshToken = loginResult.refreshToken
+        refreshTokenExpiryTime = loginResult.refreshTokenExpiryTime
+        oauthServiceType = loginResult.oauthServiceType
+        oauthServiceUserId = loginResult.oauthServiceUserId
+        userName = loginResult.userName
+    }
+}
 
 enum class UserRole {
     USER, ADMIN

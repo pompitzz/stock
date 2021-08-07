@@ -1,14 +1,13 @@
 package me.sun.apiserver.domain.entity.user.repo
 
 import me.sun.apiserver.MyDataJpaTest
+import me.sun.apiserver.createUser
 import me.sun.apiserver.domain.OAuthServiceType
-import me.sun.apiserver.domain.entity.user.User
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.DataIntegrityViolationException
-import java.time.LocalDateTime
 
 @MyDataJpaTest
 internal class UserRepositoryTest {
@@ -46,14 +45,4 @@ internal class UserRepositoryTest {
         // then
         assertThat(user.userName).isEqualTo("user2")
     }
-
-    private fun createUser(oauthServiceUserId: Long = 1, userName: String = "userName") = User(
-        accessToken = "accessToken",
-        accessTokenExpiryTime = LocalDateTime.now(),
-        refreshToken = "refreshToken",
-        refreshTokenExpiryTime = LocalDateTime.now(),
-        oauthServiceType = OAuthServiceType.KAKAO,
-        oauthServiceUserId = oauthServiceUserId,
-        userName = userName,
-    )
 }

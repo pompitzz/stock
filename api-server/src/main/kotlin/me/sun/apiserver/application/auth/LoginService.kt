@@ -1,19 +1,20 @@
 package me.sun.apiserver.application
 
 import me.sun.apiserver.application.auth.TokenProvider
-import me.sun.apiserver.domain.OAuthService
+import me.sun.apiserver.domain.OauthService
+import me.sun.apiserver.domain.service.UserService
 import org.springframework.stereotype.Service
 
 @Service
 class LoginService(
-    private val oAuthService: OAuthService,
+    private val oauthService: OauthService,
+    private val userService: UserService,
     private val tokenProvider: TokenProvider
 ) {
     fun login(loginRequest: LoginRequest): String {
-        val oauthLoginResult = oAuthService.login(loginRequest)
-        // TODO save in user and get user
-        // TODO create (App)Token
-        return ""
+        val oauthLoginResult = oauthService.login(loginRequest)
+        val user = userService.login(oauthLoginResult)
+        return tokenProvider.createToken(user.id.toString())
     }
 }
 

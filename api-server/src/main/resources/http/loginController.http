@@ -1,5 +1,5 @@
 ###
-GET http://localhost:8080/login/kakao?code=yUs-ZZPKfXG8UPKd4zMc0126AUgcJvIY35Myt5KKAdEFAB5TbwnGx9Cnqn2BZ8DS3fnMbAo9dVoAAAF7FtyB-Q&redirectUrl=http://localhost:3000/login
+GET http://localhost:8080/login/kakao?code=miEGIWseqq52OrW7eMPwiwIlSg_uesa4M8xYnikstyv-LCdq0-zRZ_QJe5hs_iNsnkf9Dgo9dRoAAAF7HhyX4g&redirectUrl=http://localhost:3000/login
 
 
 
