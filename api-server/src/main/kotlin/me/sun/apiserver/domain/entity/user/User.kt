@@ -42,9 +42,17 @@ class User(
     }
 }
 
-enum class UserRole {
-    USER,
-    ADMIN;
+enum class UserRole(
+    private val child: UserRole?,
+) {
+    USER(null),
+    ADMIN(USER)
+    ;
 
-    fun getRoleName(): String = "ROLE_${this.name}"
+    fun getPossibleRoleNames(): List<String> {
+        val roleNames = mutableListOf<String>()
+        roleNames.add(this.name)
+        if (child != null) roleNames.addAll(child.getPossibleRoleNames())
+        return roleNames
+    }
 }

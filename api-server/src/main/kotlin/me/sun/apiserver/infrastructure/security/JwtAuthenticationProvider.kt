@@ -6,6 +6,7 @@ import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.authentication.InternalAuthenticationServiceException
 import org.springframework.security.core.Authentication
+import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.stereotype.Component
 
@@ -18,10 +19,17 @@ class JwtAuthenticationProvider(
         val jwtToken = (authentication as JwtAuthenticationToken).credentials
         val userId = jwtTokenHelper.validateAndGetUserId(jwtToken)
         val user: User = userRepository.findByIdOrNull(userId.toLong()) ?: throw InternalAuthenticationServiceException("failed find user. userId: $userId")
-        return JwtAuthenticationToken(user = user, token = jwtToken, roles = listOf(SimpleGrantedAuthority(user.role.getRoleName())))
+        return JwtAuthenticationToken(user = user, token = jwtToken, roles = user.getAllRoles())
     }
 
     override fun supports(authentication: Class<*>): Boolean {
         return JwtAuthenticationToken::class.java.isAssignableFrom(authentication)
+    }
+
+    private fun User.getAllRoles(): Collection<GrantedAuthority> {
+        return role.getPossibleRoleNames()
+            .map { "ROLE_${it}" }
+            .map { SimpleGrantedAuthority(it) }
+            .toList()
     }
 }

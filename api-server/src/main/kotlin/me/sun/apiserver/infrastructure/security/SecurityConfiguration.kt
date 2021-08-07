@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 class SecurityConfiguration(
     private val jwtAuthenticationProvider: JwtAuthenticationProvider,
     private val jwtAuthenticationConverter: JwtAuthenticationConverter,
-    private val noOpAuthenticationSuccessHandler: AuthenticationSuccessHandler
+    private val noOpAuthenticationSuccessHandler: AuthenticationSuccessHandler,
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(auth: AuthenticationManagerBuilder) {
@@ -35,6 +35,7 @@ class SecurityConfiguration(
 
         http.authorizeRequests()
             .antMatchers("/admin/**").hasRole("ADMIN")
+            .antMatchers("/user/**").hasRole("USER")
             .anyRequest()
             .permitAll()
 
