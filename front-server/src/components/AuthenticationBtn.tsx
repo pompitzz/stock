@@ -3,6 +3,8 @@ import { Button } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { kakaoLogin } from '../lib/auth/kakao/kakao';
 import LastViewedPageHolder from '../lib/auth/LastViewedPageHolder';
+import { RouteComponentProps } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
 const useStyles = makeStyles((theme: Theme) => ({
   login: {
@@ -13,16 +15,22 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface AuthenticationBtnProps {
   lastViewedPagePath: string;
+  routeProps: RouteComponentProps;
 }
 
-function AuthenticationBtn({ lastViewedPagePath }: AuthenticationBtnProps) {
+function AuthenticationBtn({ lastViewedPagePath, routeProps }: AuthenticationBtnProps) {
   const classes = useStyles();
-  const login = () => {
-    kakaoLogin();
+  const { isLoggedIn, logout } = useAuth(routeProps);
+  const startOAuthLogin = () => {
     LastViewedPageHolder.save(lastViewedPagePath);
+    kakaoLogin();
+  }
+
+  if (isLoggedIn) {
+    return <Button className={classes.login} variant="outlined" onClick={logout}>LOGOUT</Button>
   }
   return (
-    <Button className={classes.login} variant="outlined" onClick={login}>KAKAO LOGIN</Button>
+    <Button className={classes.login} variant="outlined" onClick={startOAuthLogin}>LOGIN</Button>
   );
 }
 

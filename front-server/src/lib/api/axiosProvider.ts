@@ -31,3 +31,11 @@ function configureParameterSerializer(axios: AxiosInstance) {
       }).reduce(concatParam);
   }
 }
+
+export function setAuthorizationHeader(token: string) {
+  axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
+}
+
+export function removeAuthorizationHeader() {
+  delete axiosInstance.defaults.headers.common.Authorization;
+}

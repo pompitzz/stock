@@ -88,7 +88,8 @@ interface MainTemplateProps extends RouteComponentProps {
   themeType: ThemeType;
 }
 
-function MainTemplate({ routes, location, changeTheme, themeType }: MainTemplateProps) {
+function MainTemplate(props: MainTemplateProps) {
+  const { routes, location, changeTheme, themeType } = props;
   const currentRouteContext = useMemo(
     () => routes.find(route => routeUtils.isMatch(route, location.pathname)),
     [routes, location]
@@ -129,7 +130,7 @@ function MainTemplate({ routes, location, changeTheme, themeType }: MainTemplate
             TBD {currentRouteContext?.name && `| ${currentRouteContext.name}`}
           </Typography>
           <Box ml="auto">
-            <AuthenticationBtn lastViewedPagePath={location.pathname}/>
+            <AuthenticationBtn lastViewedPagePath={location.pathname} routeProps={props}/>
           </Box>
           <IconButton
             color={'inherit'}

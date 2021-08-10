@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 import { all } from 'redux-saga/effects'
 import stock, { stockSaga } from './stock';
+import auth, { authSaga } from './auth';
 
 const rootReducer = combineReducers({
   stock,
+  auth
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -11,5 +13,5 @@ export type RootState = ReturnType<typeof rootReducer>;
 export default rootReducer;
 
 export function* rootSaga() {
-  yield all([stockSaga()])
+  yield all([stockSaga(), authSaga()])
 }

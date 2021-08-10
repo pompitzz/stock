@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import qs from 'qs';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import { CircularProgress } from '@material-ui/core';
-import LastViewedPageHolder from '../lib/auth/LastViewedPageHolder';
+import { CircularProgress, Typography } from '@material-ui/core';
 import { KAKAO } from '../lib/auth/kakao/kakao';
+import useLogin from '../hooks/useLogin';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -16,16 +16,23 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-function AuthenticationPage({ location, history }: RouteComponentProps) {
+function AuthenticationPage(props: RouteComponentProps) {
   const classes = useStyles();
-  // TODO: redirect url, code를 백엔드에 보내서 로그인 구현.
-  const redirecturl = KAKAO.REDIRECT_URL;
-  const { code } = qs.parse(location.search, {
+  const { login, error } = useLogin(props);
+  const { code } = qs.parse(props.location.search, {
     ignoreQueryPrefix: true,
   });
-  const lastViewedPagePath = LastViewedPageHolder.getAndRemove();
-  if (lastViewedPagePath) {
-    history.push(lastViewedPagePath);
+  useEffect(() => {
+    login({
+      code: code as string,
+      redirectUrl: KAKAO.REDIRECT_URL
+    })
+  }, [])
+
+  if (error) {
+    return (
+      <Typography className={classes.root} variant="h5">로그인 실패</Typography>
+    )
   }
   return (
     <div className={classes.root}>

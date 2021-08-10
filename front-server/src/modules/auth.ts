@@ -1,20 +1,34 @@
 import { createAction, createReducer } from 'typesafe-actions';
-import { Payload } from '../types/common';
+import { createApiAction } from './utils/actionUtils';
+import { AxiosResponse } from 'axios';
+import { JwtToken, LoginRequest } from '../types/auth';
+import { apiState, ApiState, createApiReducer } from './utils/reducerUtils';
+import { takeLatest } from 'redux-saga/effects';
+import createAsyncSaga from './utils/sagaUtils';
+import authApi from '../lib/api/authApi';
 
-const SET_REDIRECT_PATH = 'auth/SET_REDIRECT_PATH' as const;
-export const changeField = createAction(SET_REDIRECT_PATH)<string>();
+const LOGIN = 'auth/login';
+export const loginAction = createApiAction(LOGIN)<LoginRequest, JwtToken, AxiosResponse>();
+
+const LOGOUT = 'auth/logout' as const;
+export const logoutAction = createAction(LOGOUT)<void>();
 
 export type AuthState = {
-  redirectPath: string;
+  loginResult: ApiState<JwtToken>;
+}
+
+export function* authSaga() {
+  yield takeLatest(LOGIN, createAsyncSaga(loginAction, authApi.loginKakao));
 }
 
 const initialState: AuthState = {
-  redirectPath: '',
+  loginResult: apiState.initial(),
 };
 
 export default createReducer<AuthState>(initialState, {
-  [SET_REDIRECT_PATH]: (state: AuthState, { payload: redirectPath }: Payload<string>) => ({
+  ...createApiReducer(loginAction, 'loginResult'),
+  [LOGOUT]: (state: AuthState) => ({
     ...state,
-    redirectPath: redirectPath
+    loginResult: apiState.initial()
   }),
 });
