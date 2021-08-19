@@ -1,6 +1,7 @@
 package me.sun.apiserver.infrastructure.security
 
 import org.springframework.http.HttpHeaders
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException
 import org.springframework.security.core.Authentication
 import org.springframework.security.web.authentication.AuthenticationConverter
 import org.springframework.stereotype.Component
@@ -20,7 +21,7 @@ class JwtAuthenticationConverter : AuthenticationConverter {
 
     private fun resolveToken(request: HttpServletRequest): String {
         val authorization = request.getHeader(HttpHeaders.AUTHORIZATION) ?: ""
-        if (!authorization.startsWith(BEARER)) throw IllegalArgumentException("AUTHORIZATION header should start with \"Bearer\" but is $authorization")
+        if (!authorization.startsWith(BEARER)) throw AuthenticationCredentialsNotFoundException("token does not exist")
         return authorization.substring(BEARER.length)
     }
 }
