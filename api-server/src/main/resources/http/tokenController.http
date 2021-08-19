@@ -1,0 +1,8 @@
+###
+GET http://localhost:8080/token/validate
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjI5MzgxMDA0LCJleHAiOjE2MjkzODQ2MDR9.fEa8MR8UsCbhT-t4YwLfQ6h-pAU0Fu1dYBCLo40H9TY
+
+
+
+
+

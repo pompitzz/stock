@@ -1,4 +1,4 @@
-package me.sun.apiserver.api.login
+package me.sun.apiserver.api.auth
 
 import me.sun.apiserver.application.LoginRequest
 import me.sun.apiserver.application.LoginService

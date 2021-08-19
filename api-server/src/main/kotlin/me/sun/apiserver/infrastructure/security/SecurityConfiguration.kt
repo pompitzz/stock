@@ -9,15 +9,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.web.authentication.AuthenticationFilter
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.security.web.util.matcher.OrRequestMatcher
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
 class SecurityConfiguration(
     private val jwtAuthenticationProvider: JwtAuthenticationProvider,
     private val jwtAuthenticationConverter: JwtAuthenticationConverter,
-    private val noOpAuthenticationSuccessHandler: AuthenticationSuccessHandler,
+    private val jwtAuthenticationFailureHandler: JwtAuthenticationFailureHandler,
+    private val noOpAuthenticationSuccessHandler: NoOpAuthenticationSuccessHandler,
 ) : WebSecurityConfigurerAdapter() {
 
     override fun configure(auth: AuthenticationManagerBuilder) {
@@ -34,8 +35,9 @@ class SecurityConfiguration(
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
         http.authorizeRequests()
-            .antMatchers("/admin/**").hasRole("ADMIN")
-            .antMatchers("/user/**").hasRole("USER")
+            .requestMatchers(ADMIN_ROLE_REQUEST_MATCHER).hasRole("ADMIN")
+            .requestMatchers(USER_ROLE_REQUEST_MATCHER).hasRole("USER")
+            .requestMatchers(AUTHENTICATED_REQUEST_MATCHER).authenticated()
             .anyRequest()
             .permitAll()
 
@@ -45,7 +47,8 @@ class SecurityConfiguration(
     fun authenticationFilter(): AuthenticationFilter {
         val filter = AuthenticationFilter(authenticationManagerBean(), jwtAuthenticationConverter)
         filter.successHandler = noOpAuthenticationSuccessHandler
-        filter.requestMatcher = AuthRequestMatcher()
+        filter.failureHandler = jwtAuthenticationFailureHandler
+        filter.requestMatcher = OrRequestMatcher(ADMIN_ROLE_REQUEST_MATCHER, USER_ROLE_REQUEST_MATCHER, AUTHENTICATED_REQUEST_MATCHER)
         return filter
     }
 }
