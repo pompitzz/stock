@@ -1,7 +1,7 @@
 import StockSearchPage from '../pages/SearchStockPage/StockSearchPage';
 import { Search } from '@material-ui/icons';
 import StockDetailPage from '../pages/StockDetailPage';
-import LoginPage from '../pages/AuthenticationPage';
+import AuthenticationPage from '../pages/AuthenticationPage';
 
 export type RouteContext = {
   name: string;
@@ -28,7 +28,7 @@ export const routes: RouteContext[] = [
   {
     name: '',
     path: '/login',
-    pageComponent: <LoginPage />,
+    pageComponent: <AuthenticationPage />,
     showInMenu: false
   }
 ]

@@ -10,12 +10,14 @@ import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer, { rootSaga } from './modules';
 import { Chart, registerables } from 'chart.js';
+import tokenService from './lib/auth/TokenService';
 
 Chart.register(...registerables);
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(sagaMiddleware)));
 sagaMiddleware.run(rootSaga);
+tokenService.configureTokenIfHas();
 
 ReactDOM.render(
   <Provider store={store}>

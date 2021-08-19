@@ -2,18 +2,32 @@ import { removeAuthorizationHeader, setAuthorizationHeader } from '../api/axiosP
 
 const KEY = 'token';
 
-const tokenService = {
+class TokenService {
   saveToken(token: string) {
     localStorage.setItem(KEY, token);
     setAuthorizationHeader(token);
-  },
+  }
+
   removeToken() {
     localStorage.removeItem(KEY);
     removeAuthorizationHeader();
-  },
+  }
+
   hasToken() {
-    return !!localStorage.getItem(KEY)
+    return !!TokenService.getToken()
+  }
+
+  configureTokenIfHas() {
+    if (this.hasToken()) {
+      setAuthorizationHeader(TokenService.getToken())
+    }
+  }
+
+  private static getToken(): string {
+    return localStorage.getItem(KEY)!!;
   }
 }
+
+const tokenService = new TokenService();
 
 export default tokenService;

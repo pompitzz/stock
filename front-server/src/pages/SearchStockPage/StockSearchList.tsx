@@ -42,7 +42,7 @@ function StockSearchList({ stockPage, loading, error }: StockSearchListProps) {
     return <div className={classes.loading}><CircularProgress /></div>;
   }
   if (error) {
-    return <div className={classes.empty}>something is wrong :( {error}</div>;
+    return <div className={classes.empty}>{error.message}</div>;
   }
   if (stockPage.content.length === 0) {
     return <div className={classes.empty}>no results.</div>

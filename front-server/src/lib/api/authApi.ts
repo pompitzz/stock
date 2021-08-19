@@ -1,6 +1,4 @@
 import getAxios from './axiosProvider';
-import { ServerPageResponse } from '../../types/pages';
-import { StockContext } from '../../types/stock';
 import { AxiosResponse } from 'axios';
 import { JwtToken, LoginRequest } from '../../types/auth';
 
@@ -11,14 +9,9 @@ const authApi = {
     return axios.get('/login/kakao', { params: loginRequest })
       .then(({ data }: AxiosResponse<JwtToken>) => data);
   },
-}
-
-type StockSearchResponse = {
-  stockContexts: ServerPageResponse<StockContext>,
-}
-
-type StockContextResponse = {
-  stockContext: StockContext,
+  validateToken(): Promise<String> {
+    return axios.get('/token/validate').then(({ data }: AxiosResponse<String>) => data);
+  },
 }
 
 export default authApi;

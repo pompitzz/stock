@@ -58,7 +58,7 @@ export function createApiReducer<S, AC extends AnyAsyncActionCreator, K extends 
       });
     },
     [FAILURE]: (state: S, action: AnyAction) => {
-      // console.log('failure action', action);
+      console.log('failure action', action);
       return ({
         ...state,
         [key]: apiState.failure(action.payload)
