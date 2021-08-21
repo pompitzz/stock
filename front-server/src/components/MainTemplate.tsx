@@ -9,11 +9,14 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { Link, Route, RouteComponentProps, Switch, withRouter } from 'react-router-dom';
 import { Box, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { RouteContext } from '../routes/routes';
+import { RouteContext, ShowInMenuOption } from '../routes/routes';
 import { Brightness4, Brightness7 } from '@material-ui/icons';
 import { ThemeType } from '../App';
 import routeUtils from '../routes/routeUtils';
 import AuthenticationBtn from './AuthenticationBtn';
+import useAuth from '../hooks/useAuth';
+import LastViewedPageHolder from '../lib/auth/LastViewedPageHolder';
+import { kakaoLogin } from '../lib/auth/kakao/kakao';
 
 const drawerWidth = 240;
 
@@ -94,8 +97,16 @@ function MainTemplate(props: MainTemplateProps) {
     () => routes.find(route => routeUtils.isMatch(route, location.pathname)),
     [routes, location]
   );
-  const classes = useStyles();
   const [open, setOpen] = useState(true);
+  const { isLoggedIn, logout } = useAuth(props);
+  const onLogin = () => {
+    LastViewedPageHolder.save(location.pathname);
+    kakaoLogin();
+  }
+  const onLogout = () => {
+    logout();
+    props.history.push('/search-stock');
+  }
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -105,6 +116,7 @@ function MainTemplate(props: MainTemplateProps) {
     setOpen(false);
   };
 
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar
@@ -130,7 +142,7 @@ function MainTemplate(props: MainTemplateProps) {
             TBD {currentRouteContext?.name && `| ${currentRouteContext.name}`}
           </Typography>
           <Box ml="auto">
-            <AuthenticationBtn lastViewedPagePath={location.pathname} routeProps={props}/>
+            <AuthenticationBtn isLoggedIn={isLoggedIn} onLogin={onLogin} onLogout={onLogout} />
           </Box>
           <IconButton
             color={'inherit'}
@@ -160,12 +172,18 @@ function MainTemplate(props: MainTemplateProps) {
         </div>
         <Divider />
         <List>
-          {routes.filter((context: RouteContext) => context.showInMenu).map((context: RouteContext) => (
-            <ListItem button key={context.path} component={Link} to={context.path}>
-              <ListItemIcon>{context.menuIconComponent}</ListItemIcon>
-              <ListItemText primary={context.name} />
-            </ListItem>
-          ))}
+          {routes
+            .filter((context: RouteContext) => {
+              if (context.showInMenuOption === ShowInMenuOption.ALWAYS) return true;
+              if (isLoggedIn) return context.showInMenuOption === ShowInMenuOption.LOGGED_IN;
+              return false;
+            })
+            .map((context: RouteContext) => (
+              <ListItem button key={context.path} component={Link} to={context.path}>
+                <ListItemIcon>{context.menuIconComponent}</ListItemIcon>
+                <ListItemText primary={context.name} />
+              </ListItem>
+            ))}
         </List>
       </Drawer>
       <main className={classes.content}>

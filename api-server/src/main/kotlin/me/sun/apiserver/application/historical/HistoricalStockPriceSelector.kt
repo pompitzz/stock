@@ -1,9 +1,12 @@
 package me.sun.apiserver.application.historical
 
 import me.sun.apiserver.application.stock.StockSearchSelectionTimeUnit
+import me.sun.apiserver.common.weekOfYear
 import me.sun.apiserver.domain.entity.historicalstockprice.HistoricalStockPrice
 import org.springframework.stereotype.Component
 import java.time.LocalDate
+import java.time.ZoneOffset
+import java.time.ZonedDateTime
 import java.time.temporal.WeekFields
 
 @Component
@@ -60,9 +63,22 @@ class HistoricalStockPriceSelector {
 
     private fun List<HistoricalStockPrice>.groupByYear() = this.groupBy { it.date.year }
     private fun List<HistoricalStockPrice>.groupByMonth() = this.groupBy { it.date.monthValue }
-    private fun List<HistoricalStockPrice>.groupByWeek() = this.groupBy { it.date.get(WeekFields.SUNDAY_START.weekOfWeekBasedYear()) }
+    private fun List<HistoricalStockPrice>.groupByWeek() = this.groupBy { it.date.weekOfYear() }
 }
 
 fun main() {
-    println(LocalDate.now().dayOfWeek.value)
+    fun printLocalDate(localDate: LocalDate) {
+        println("$localDate, dayOfWeek: ${localDate.dayOfWeek}, dayOfWeek.value: ${localDate.dayOfWeek.value}," +
+                " SUNDAY_START: ${localDate.get(WeekFields.SUNDAY_START.weekOfWeekBasedYear())}, ISO: ${localDate.get(WeekFields.ISO.weekOfWeekBasedYear())}")
+    }
+    printLocalDate(LocalDate.now().minusDays(1))
+    printLocalDate(LocalDate.now())
+    printLocalDate(LocalDate.now().plusDays(1))
+
+    fun printZonedDateTime(zonedDateTime: ZonedDateTime) {
+        println("$zonedDateTime, ToLocalDate: ${zonedDateTime.toLocalDate()}")
+    }
+    printZonedDateTime(ZonedDateTime.now())
+    printZonedDateTime(ZonedDateTime.now().withZoneSameInstant(ZoneOffset.ofHours(-18)))
+    printZonedDateTime(ZonedDateTime.now().withZoneSameLocal(ZoneOffset.ofHours(-18)))
 }

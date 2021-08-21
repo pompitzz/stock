@@ -9,6 +9,7 @@ export enum Currency {
 export type SearchRequest = {
   query: string,
   pageRequest: PageRequest,
+  withDetails: boolean,
 }
 
 export type FindStockContextRequest = {

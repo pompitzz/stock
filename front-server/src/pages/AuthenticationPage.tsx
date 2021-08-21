@@ -4,7 +4,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { CircularProgress, Typography } from '@material-ui/core';
 import { KAKAO } from '../lib/auth/kakao/kakao';
-import useLogin from '../hooks/useLogin';
+import useAuth from '../hooks/useAuth';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 function AuthenticationPage(props: RouteComponentProps) {
   const classes = useStyles();
-  const { login, error } = useLogin(props);
+  const { login, error } = useAuth(props);
   const { code } = qs.parse(props.location.search, {
     ignoreQueryPrefix: true,
   });

@@ -1,5 +1,6 @@
 package me.sun.apiserver.domain.entity.stock
 
+import me.sun.apiserver.common.toZonedDateTime
 import me.sun.apiserver.domain.entity.Currency
 import me.sun.apiserver.domain.entity.StockPrice
 import java.time.LocalDateTime
@@ -49,4 +50,8 @@ class Stock(
         }
         return time.isBefore(SEOUL_CLOSE_TIME)
     }
+
+    fun getTimeZoneId(): ZoneId = ZoneId.of(timeZone)
+
+    fun getZonedLastSyncedAt(): ZonedDateTime = lastSyncedAt.toZonedDateTime().withZoneSameInstant(getTimeZoneId())
 }

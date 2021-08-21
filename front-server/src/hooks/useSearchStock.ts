@@ -4,7 +4,7 @@ import { searchStockAction } from '../modules/stock';
 import PageInfo, { Page } from '../types/pages';
 import { RootState } from '../modules';
 
-export default function useSearchStock() {
+export default function useSearchStock(withDetails: boolean = false) {
   const dispatch = useDispatch();
 
   const { loading, stockPage, error } = useSelector(({ stock }: RootState) => ({
@@ -18,6 +18,7 @@ export default function useSearchStock() {
     dispatch(searchStockAction.request({
       query: '',
       pageRequest: firstPageRequest,
+      withDetails: withDetails
     }));
   }, [dispatch]);
 
@@ -25,6 +26,7 @@ export default function useSearchStock() {
     dispatch(searchStockAction.request({
       query: e.target.value,
       pageRequest: firstPageRequest,
+      withDetails: withDetails
     }));
   };
   // TODO: add changePageEvent

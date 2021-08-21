@@ -8,10 +8,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: '2px 4px',
       display: 'flex',
       alignItems: 'center',
-      width: 400,
+      width: (props: SearchBoxProps) => props.fullWidth ? '100%' : 400,
       marginLeft: 'auto',
       marginRight: 'auto',
-      marginTop: theme.spacing(3),
     },
     input: {
       marginLeft: theme.spacing(1),
@@ -25,20 +24,21 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 
 interface SearchBoxProps {
-  searchStock: (e: ChangeEvent<HTMLInputElement>) => void
+  searchStock: (e: ChangeEvent<HTMLInputElement>) => void;
+  fullWidth?: boolean;
 }
 
-function StockSearchInput({ searchStock }: SearchBoxProps) {
-  const classes = useStyles();
+function StockSearchInput({ searchStock, fullWidth }: SearchBoxProps) {
+  const classes = useStyles({ searchStock, fullWidth });
   return (
-    <Paper component="form" className={classes.root}>
+    <Paper className={classes.root}>
       <InputBase
         className={classes.input}
         placeholder="Search Stocks"
         inputProps={{ 'aria-label': 'search stocks' }}
         onChange={searchStock}
       />
-      <IconButton type="submit" className={classes.iconButton} aria-label="search">
+      <IconButton className={classes.iconButton} aria-label="search">
         <Search />
       </IconButton>
     </Paper>

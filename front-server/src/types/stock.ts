@@ -13,7 +13,6 @@ export type StockDetail = {
   price: number;
   priceDate: string;
   currency: Currency;
-  interest: boolean;
 }
 
 export type HistoricalPrice = {

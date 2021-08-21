@@ -8,9 +8,10 @@ import apiResponseConverter from '../utils/apiResponseConverter';
 const axios = getAxios();
 
 const stockApi = {
-  search({ query, pageRequest }: SearchRequest): Promise<Page<StockContext>> {
+  search({ query, withDetails, pageRequest }: SearchRequest): Promise<Page<StockContext>> {
     const params = {
       query,
+      withDetails,
       ...pageRequest
     };
     return axios.get('/stock/search', { params: params })

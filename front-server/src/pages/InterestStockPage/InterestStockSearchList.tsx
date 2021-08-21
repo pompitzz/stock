@@ -1,24 +1,27 @@
 import React from 'react';
 import { Page } from '../../types/pages';
 import { StockContext } from '../../types/stock';
-import { Box, CircularProgress } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import StockCard from '../../components/StockCard';
+import InterestStockList from './InterestStockList';
 
 const useStyles = makeStyles((theme: Theme) => ({
     loading: {
       textAlign: 'center',
-      marginTop: theme.spacing(5),
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(2),
     },
     empty: {
       textAlign: 'center',
-      marginTop: theme.spacing(5),
+      marginTop: theme.spacing(2),
+      marginBottom: theme.spacing(2),
       fontWeight: 'bold',
       fontSize: '20px'
     },
     root: {
-      padding: theme.spacing(2),
       marginTop: theme.spacing(1),
+      maxHeight: '300px',
+      overflow: 'scroll'
     },
     input: {
       marginLeft: theme.spacing(1),
@@ -36,7 +39,7 @@ interface StockSearchListProps {
   error: Error | null;
 }
 
-function StockSearchList({ stockPage, loading, error }: StockSearchListProps) {
+function InterestStockSearchList({ stockPage, loading, error }: StockSearchListProps) {
   const classes = useStyles();
   if (loading) {
     return <div className={classes.loading}><CircularProgress /></div>;
@@ -47,15 +50,8 @@ function StockSearchList({ stockPage, loading, error }: StockSearchListProps) {
   if (stockPage.content.length === 0) {
     return <div className={classes.empty}>no results.</div>
   }
-  return (
-    <div className={classes.root}>
-      {stockPage.content.map((stockContext) => (
-        <Box pb={2} key={stockContext.stockDetail.stockId}>
-          <StockCard stockContext={stockContext} />
-        </Box>
-      ))}
-    </div>
-  );
+  const stockDetails = stockPage.content.map(({ stockDetail }) => stockDetail)
+  return <InterestStockList stockDetails={stockDetails} interest={false} />;
 }
 
-export default StockSearchList;
+export default InterestStockSearchList;

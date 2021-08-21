@@ -1,12 +1,12 @@
 import React from 'react';
 import useSearchStock from '../../hooks/useSearchStock';
-import StockSearchInput from './StockSearchInput';
+import StockSearchInput from '../../components/StockSearchInput';
 import StockSearchList from './StockSearchList';
 
 function StockSearchPage() {
-  const { searchStock, loading, stockPage, error } = useSearchStock();
+  const { searchStock, loading, stockPage, error } = useSearchStock(true);
   return (
-    <div>
+    <div style={{ marginTop: 18 }}>
       <StockSearchInput searchStock={searchStock} />
       <StockSearchList stockPage={stockPage} loading={loading} error={error} />
     </div>

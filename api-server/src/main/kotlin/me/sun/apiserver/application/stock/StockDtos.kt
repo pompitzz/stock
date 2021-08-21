@@ -8,13 +8,13 @@ import me.sun.apiserver.domain.entity.stock.Stock
 import java.math.BigDecimal
 import java.time.LocalDate
 
-class StockContext(
+data class StockContext(
     val stockDetail: StockDetail,
     val interest: Boolean = false,
     val historicalPrices: List<HistoricalStockPriceDto> = emptyList(),
 )
 
-class StockDetail(
+data class StockDetail(
     val stockId: Long,
     val symbol: String,
     val name: String,
@@ -36,7 +36,13 @@ class StockDetail(
     }
 }
 
-class HistoricalStockPriceDto(
+data class StockSearchCondition(
+    val query:String,
+    val withDetails: Boolean,
+    val periodType: StockSearchPeriodType,
+)
+
+data class HistoricalStockPriceDto(
     val date: LocalDate,
     val open: BigDecimal,
     val high: BigDecimal,

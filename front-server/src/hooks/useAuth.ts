@@ -9,7 +9,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import authApi from '../lib/api/authApi';
 import { AxiosError } from 'axios';
 
-export default function useLogin({ history }: RouteComponentProps) {
+export default function useAuth({ history }: RouteComponentProps) {
   const dispatch = useDispatch();
   const { token, error } = useSelector(({ auth }: RootState) => ({
     token: auth.loginResult.data?.token,
