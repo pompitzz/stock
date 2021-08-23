@@ -13,17 +13,17 @@ class TokenService {
     removeAuthorizationHeader();
   }
 
-  hasToken() {
-    return !!TokenService.getToken()
+  hasToken(): boolean {
+    return !!this.getToken()
   }
 
   configureTokenIfHas() {
     if (this.hasToken()) {
-      setAuthorizationHeader(TokenService.getToken())
+      setAuthorizationHeader(this.getToken())
     }
   }
 
-  private static getToken(): string {
+  getToken(): string {
     return localStorage.getItem(KEY)!!;
   }
 }

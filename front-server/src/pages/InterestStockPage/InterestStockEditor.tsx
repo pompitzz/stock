@@ -6,10 +6,13 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
 import StockSearchInput from '../../components/StockSearchInput';
-import { Divider } from '@material-ui/core';
+import { CircularProgress, Divider } from '@material-ui/core';
 import useSearchStock from '../../hooks/useSearchStock';
 import InterestStockSearchList from './InterestStockSearchList';
 import InterestStockList from './InterestStockList';
+import { StockDetail } from '../../types/stock';
+import useInterestStockManager from '../../hooks/useInterestStockManager';
+import useDialog from '../../hooks/useDialog';
 
 const useStyles = makeStyles((theme: Theme) => ({
     title: {
@@ -17,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     search: {
       padding: theme.spacing(1),
-      maxWidth: 450,
+      maxWidth: 450
     },
     searchResult: {
       maxHeight: '300px',
@@ -36,17 +39,30 @@ const useStyles = makeStyles((theme: Theme) => ({
   })
 );
 
-export default function InterestStockEditor() {
-  const [open, setOpen] = useState(false);
+interface InterestStockEditorProps {
+  parentInterestStocks: StockDetail[];
+  findInterestStocks: () => void;
+}
+
+export default function InterestStockEditor({ parentInterestStocks, findInterestStocks }: InterestStockEditorProps) {
+  const { interestStocks, interestStockIds, addInterestStock, removeInterestStock, saveInterestStocks } = useInterestStockManager(parentInterestStocks);
   const { searchStock, loading, stockPage, error } = useSearchStock(false);
+  const { open, openDialog, closeDialog } = useDialog();
 
-  const openDialog = () => {
-    setOpen(true);
-  };
-  const closeDialog = () => {
-    setOpen(false);
-  };
-
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const onSubmit = () => {
+    setSubmitLoading(true);
+    saveInterestStocks()
+      .then(() => {
+        findInterestStocks();
+        closeDialog();
+      })
+      .catch((e) => {
+        // TODO: 스낵바 추가하기
+        console.log('failed save interest stocks', e);
+      })
+      .finally(() => setSubmitLoading(false));
+  }
   const classes = useStyles();
   return (
     <div>
@@ -62,21 +78,23 @@ export default function InterestStockEditor() {
           <StockSearchInput searchStock={searchStock} fullWidth />
         </div>
         <div className={classes.searchResult}>
-          <InterestStockSearchList stockPage={stockPage} loading={loading} error={error} />
+          <InterestStockSearchList stockPage={stockPage} loading={loading} error={error} addInterestStock={addInterestStock} interestStockIds={interestStockIds} />
         </div>
         <Divider />
         <Typography variant="h6" className={classes.interestTitle}>관심 종목</Typography>
         <div className={classes.interestStocks}>
-          <InterestStockList stockDetails={stockPage.content.map(({ stockDetail }) => stockDetail)} interest={true} />
+          <InterestStockList stockDetails={interestStocks} interest={true} action={removeInterestStock} />
         </div>
         <Divider />
         <MuiDialogActions>
           <Button variant="outlined" onClick={closeDialog}>
             취소
           </Button>
-          <Button variant="outlined" onClick={closeDialog}>
-            저장
-          </Button>
+          <div>
+            <Button variant="outlined" onClick={onSubmit}>
+              {submitLoading ? <CircularProgress size={24} /> : '저장'}
+            </Button>
+          </div>
         </MuiDialogActions>
       </Dialog>
     </div>

@@ -1,5 +1,5 @@
 package me.sun.apiserver.api.user
 
-import me.sun.apiserver.application.stock.StockContext
+import me.sun.apiserver.application.stock.StockDetail
 
-class FindUserInterestStockResponse(val stockDetails: List<StockContext>)
+class FindInterestStocksResponse(val stockDetails: List<StockDetail>)

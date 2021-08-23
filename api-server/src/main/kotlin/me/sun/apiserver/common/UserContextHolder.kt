@@ -12,4 +12,12 @@ object UserContextHolder {
         }
         return null
     }
+
+    fun getUserId(): Long? {
+        val authentication = SecurityContextHolder.getContext()?.authentication
+        if (authentication is JwtAuthenticationToken) {
+            return authentication.principal?.id
+        }
+        return null
+    }
 }

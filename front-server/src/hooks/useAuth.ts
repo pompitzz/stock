@@ -1,40 +1,29 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
 import { LoginRequest } from '../types/auth';
-import { loginAction, logoutAction } from '../modules/auth';
-import { useEffect, useState } from 'react';
+import { issueTokenAction, logoutAction } from '../modules/auth';
+import { useEffect } from 'react';
 import tokenService from '../lib/auth/TokenService';
-import LastViewedPageHolder from '../lib/auth/LastViewedPageHolder';
-import { RouteComponentProps } from 'react-router-dom';
 import authApi from '../lib/api/authApi';
 import { AxiosError } from 'axios';
+import useIsLoggedIn from './useIsLoggedIn';
 
-export default function useAuth({ history }: RouteComponentProps) {
+export default function useAuth() {
   const dispatch = useDispatch();
   const { token, error } = useSelector(({ auth }: RootState) => ({
-    token: auth.loginResult.data?.token,
-    error: auth.loginResult.error,
+    token: auth.jwtToken.data?.token,
+    error: auth.jwtToken.error,
   }));
-  const [isLoggedIn, setIsLoggedIn] = useState(tokenService.hasToken());
+  const isLoggedIn: boolean = useIsLoggedIn();
 
-  const login = (loginRequest: LoginRequest) => {
-    dispatch(loginAction.request(loginRequest));
+  const issueToken = (loginRequest: LoginRequest) => {
+    dispatch(issueTokenAction.request(loginRequest));
   };
 
   const logout = () => {
-    dispatch(logoutAction());
     tokenService.removeToken();
-    setIsLoggedIn(false);
+    dispatch(logoutAction());
   }
-
-  useEffect(() => {
-    if (token) {
-      tokenService.saveToken(token);
-      setIsLoggedIn(true);
-      const lastViewedPagePath = LastViewedPageHolder.getAndRemove() || '/search-stock';
-      history.push(lastViewedPagePath);
-    }
-  }, [token]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -47,9 +36,10 @@ export default function useAuth({ history }: RouteComponentProps) {
           }
         });
     }
-  }, []);
+  });
   return {
-    login,
+    issueToken,
+    token,
     error,
     isLoggedIn,
     logout,

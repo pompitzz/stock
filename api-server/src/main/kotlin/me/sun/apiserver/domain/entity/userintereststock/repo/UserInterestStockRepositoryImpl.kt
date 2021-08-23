@@ -5,7 +5,7 @@ import me.sun.apiserver.domain.entity.userintereststock.QUserInterestStock.userI
 import me.sun.apiserver.domain.entity.userintereststock.UserInterestStock
 
 class UserInterestStockRepositoryImpl(
-    private val jpaQueryFactory: JPAQueryFactory
+    private val jpaQueryFactory: JPAQueryFactory,
 ) : UserInterestStockRepositoryCustom {
     override fun softDelete(userId: Long, stockId: Long): Long =
         jpaQueryFactory.update(userInterestStock)
@@ -15,14 +15,6 @@ class UserInterestStockRepositoryImpl(
                     .and(userInterestStock.stockId.eq(stockId))
             )
             .execute()
-
-    override fun findAllByUserId(userId: Long): List<UserInterestStock> =
-        jpaQueryFactory.selectFrom(userInterestStock)
-            .where(
-                userInterestStock.userId.eq(userId)
-                    .and(userInterestStock.deleted.isFalse)
-            )
-            .fetch()
 
     override fun findAllByUserIdAndStockIds(userId: Long, stockIds: List<Long>): List<UserInterestStock> =
         jpaQueryFactory.selectFrom(userInterestStock)

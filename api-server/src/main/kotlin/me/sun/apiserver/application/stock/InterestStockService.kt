@@ -1,13 +1,15 @@
-package me.sun.apiserver.application.user
+package me.sun.apiserver.application.stock
 
+import me.sun.apiserver.domain.entity.stock.repo.StockRepository
 import me.sun.apiserver.domain.entity.userintereststock.UserInterestStock
 import me.sun.apiserver.domain.entity.userintereststock.repo.UserInterestStockRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class UserInterestStockService(
-    private val userInterestStockRepository: UserInterestStockRepository
+class InterestStockService(
+    private val userInterestStockRepository: UserInterestStockRepository,
+    private val stockRepository: StockRepository,
 ) {
     fun add(userId: Long, stockId: Long) {
         userInterestStockRepository.save(UserInterestStock(userId = userId, stockId = stockId))
@@ -21,11 +23,12 @@ class UserInterestStockService(
         userInterestStockRepository.softDelete(userId, stockId)
     }
 
-    fun findInterestStockIds(userId: Long): List<Long> {
-        return userInterestStockRepository.findAllByUserId(userId).map { it.stockId }
+    fun findInterestStocks(userId: Long): List<StockDetail> {
+        val stocks = stockRepository.findInterestStocksByUserId(userId)
+        return stocks.map { StockDetail.from(it) }
     }
 
-    fun findExistsStockIds(userId: Long?, stockIds: List<Long>): Set<Long> {
+    fun findInterestStockIds(userId: Long?, stockIds: List<Long>): Set<Long> {
         if (stockIds.isEmpty() || userId == null) return emptySet()
         return userInterestStockRepository.findAllByUserIdAndStockIds(userId, stockIds)
             .map { it.stockId }

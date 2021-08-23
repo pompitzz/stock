@@ -91,21 +91,20 @@ interface MainTemplateProps extends RouteComponentProps {
   themeType: ThemeType;
 }
 
-function MainTemplate(props: MainTemplateProps) {
-  const { routes, location, changeTheme, themeType } = props;
-  const currentRouteContext = useMemo(
+function MainTemplate({ routes, location, changeTheme, themeType, history }: MainTemplateProps) {
+  const currentRouteContext: RouteContext | undefined = useMemo(
     () => routes.find(route => routeUtils.isMatch(route, location.pathname)),
     [routes, location]
   );
   const [open, setOpen] = useState(true);
-  const { isLoggedIn, logout } = useAuth(props);
+  const { isLoggedIn, logout } = useAuth();
   const onLogin = () => {
     LastViewedPageHolder.save(location.pathname);
     kakaoLogin();
   }
   const onLogout = () => {
     logout();
-    props.history.push('/search-stock');
+    history.push('/search-stock');
   }
 
   const handleDrawerOpen = () => {
@@ -115,6 +114,10 @@ function MainTemplate(props: MainTemplateProps) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  if (currentRouteContext && currentRouteContext.showInMenuOption === ShowInMenuOption.LOGGED_IN && !isLoggedIn) {
+    onLogout();
+  }
 
   const classes = useStyles();
   return (

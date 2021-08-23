@@ -6,4 +6,6 @@ import org.springframework.data.domain.Pageable
 
 interface StockRepositoryCustom {
     fun search(query: String, pageable: Pageable): Page<Stock>
+
+    fun findInterestStocksByUserId(userId: Long): List<Stock>
 }

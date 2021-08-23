@@ -15,6 +15,10 @@ export type StockDetail = {
   currency: Currency;
 }
 
+export type InterestStockIds = {
+  [key: string]: boolean;
+}
+
 export type HistoricalPrice = {
   date: string;
   open: number;

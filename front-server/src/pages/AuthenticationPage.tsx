@@ -5,6 +5,8 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import { CircularProgress, Typography } from '@material-ui/core';
 import { KAKAO } from '../lib/auth/kakao/kakao';
 import useAuth from '../hooks/useAuth';
+import tokenService from '../lib/auth/TokenService';
+import LastViewedPageHolder from '../lib/auth/LastViewedPageHolder';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -16,18 +18,25 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }));
 
-function AuthenticationPage(props: RouteComponentProps) {
+function AuthenticationPage({ location, history }: RouteComponentProps) {
   const classes = useStyles();
-  const { login, error } = useAuth(props);
-  const { code } = qs.parse(props.location.search, {
+  const { issueToken, token, error } = useAuth();
+  const { code } = qs.parse(location.search, {
     ignoreQueryPrefix: true,
   });
   useEffect(() => {
-    login({
+    issueToken({
       code: code as string,
       redirectUrl: KAKAO.REDIRECT_URL
     })
-  }, [])
+  })
+  useEffect(() => {
+    if (token) {
+      tokenService.saveToken(token);
+      const lastViewedPagePath = LastViewedPageHolder.getAndRemove() || '/search-stock';
+      history.push(lastViewedPagePath);
+    }
+  }, [token]);
 
   if (error) {
     return (

@@ -24,46 +24,40 @@ const useStyles = makeStyles((theme: Theme) => ({
   })
 );
 
-interface InterestStockProps {
-  interest: boolean;
-  stockDetail: StockDetail;
-}
-
-function InterestStock({ interest, stockDetail }: InterestStockProps) {
-  const { name, symbol, price, currency } = stockDetail;
-
-  const classes = useStyles();
-  return (
-    <div className={classes.root}>
-      <div className={classes.info}>
-        <div>{name}</div>
-        <div>{symbol}</div>
-      </div>
-      <Typography className={classes.price} variant="subtitle2">
-        {price} {currency}
-      </Typography>
-      <IconButton
-        color={'inherit'}
-        className={classes.iconBtn}
-      >
-        {interest ? <Remove /> : <Add />}
-      </IconButton>
-    </div>
-  )
-}
-
 interface InterestStockListProps {
   interest: boolean;
   stockDetails: StockDetail[];
+  action: (interestStock: StockDetail) => void;
 }
 
-function InterestStockList({ interest, stockDetails }: InterestStockListProps) {
+function InterestStockList({ interest, stockDetails, action }: InterestStockListProps) {
+  const classes = useStyles();
   return (
     <div>
-      {stockDetails.map(stockDetail => (
-          <InterestStock key={stockDetail.stockId} interest={interest} stockDetail={stockDetail} />)
-        )
+      {
+        stockDetails.map(stockDetail => {
+          const { name, symbol, price, currency, stockId } = stockDetail;
+          return (
+            <div className={classes.root} key={stockId}>
+              <div className={classes.info}>
+                <div>{name}</div>
+                <div>{symbol}</div>
+              </div>
+              <Typography className={classes.price} variant="subtitle2">
+                {price} {currency}
+              </Typography>
+              <IconButton
+                color={'inherit'}
+                className={classes.iconBtn}
+                onClick={() => action(stockDetail)}
+              >
+                {interest ? <Remove /> : <Add />}
+              </IconButton>
+            </div>
+          )
+        })
       }
+
     </div>
   )
 }
